@@ -1,0 +1,1 @@
+export type Difficulty = "active-rest" | "moderate" | "hard" | "extreme";
