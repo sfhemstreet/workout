@@ -11,12 +11,19 @@ const canvasStyles = {
 };
 
 type ConfettiProps = {
-  fire: boolean;
+  isFiring: boolean;
 };
 
-export const Confetti = ({ fire }: ConfettiProps) => (
+/**
+ * Confetti
+ * 
+ * Shoots confetti all over screen.
+ * 
+ * @param isFiring set to `true` to fire confetti
+ */
+export const Confetti = ({ isFiring }: ConfettiProps) => (
   <ReactCanvasConfetti
-    fire={fire}
+    fire={isFiring}
     startVelocity={145}
     particleCount={2000}
     spread={360}

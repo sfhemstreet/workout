@@ -29,11 +29,13 @@ type ExercisesInputProps = {
 
 /**
  * ExercisesInput
+ * 
+ * Inputs for adding exercises and rest periods to workout.
  *
- * @param exercises
- * @param onReorder
- * @param onChange
- * @param onDelete
+ * @param exercises exercises in workout
+ * @param onReorder function called when exercise order is changed
+ * @param onChange function called when field of exercise changes
+ * @param onDelete function called when exercise's 'Delete' button is clicked
  */
 export const ExercisesInput = ({
   exercises,

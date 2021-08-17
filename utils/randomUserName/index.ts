@@ -2,7 +2,6 @@
  * Creates a random username.
  */
  export async function randomUserName() {
-
   const adjectives = (await import('./adjectives')).adjectives;
   const nouns = (await import('./nouns')).nouns;
 

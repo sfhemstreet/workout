@@ -19,7 +19,7 @@ import {
   ErrorText,
   ForgotPasswordBtn,
 } from "./styles";
-import { checkPassword } from "./utils";
+import { checkPassword } from "./helpers";
 
 type OnSubmitArgs = {
   email: string;

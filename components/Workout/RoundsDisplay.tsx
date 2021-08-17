@@ -7,6 +7,15 @@ type RoundsDisplayProps = {
   isStarted?: boolean;
 };
 
+/**
+ * RoundsDisplay
+ * 
+ * Displays the current workout round.
+ * 
+ * @param currentRound workout's current round
+ * @param totalRounds workout's total number of rounds
+ * @param isStarted workouts running status
+ */
 export const RoundsDisplay = ({
   currentRound,
   totalRounds,

@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import React from "react";
+
 import {
   CountdownKeyFrame,
   FadeInKeyframe,
@@ -17,7 +18,14 @@ type CounterProps = {
 };
 
 /**
- * Counter displays the time remaining in an exercise.
+ * Counter 
+ * 
+ * Displays the time remaining in an exercise.
+ * 
+ * @param currentTime current time remaining in exercise
+ * @param duration total duration of exercise
+ * @param isPaused if exercise is paused set to `true`
+ * @param shouldReset if counter needs to reset set to `true` 
  */
 export const Counter = ({
   currentTime,

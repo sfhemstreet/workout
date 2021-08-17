@@ -14,7 +14,7 @@ import { FadableDiv, FadeInOut, FadeInOutMixin } from "../FadeInOut";
 import { FullscreenBlurredBackground } from "../FullScreenBlurredBackground";
 import { NextExercisesList } from "./NextExercisesList";
 import { RoundsDisplay } from "./RoundsDisplay";
-import { H3, H4, NumberSpan, P } from "../Txt";
+import { H3, H4, NumberSpan } from "../Txt";
 
 type WorkoutProps = {
   currentExercise: ActiveExercise;
@@ -45,7 +45,7 @@ export const Workout = ({
   workout,
   actions,
 }: WorkoutProps) => {
-  const [willFire, setWillFire] = useState(false);
+  const [isFiringConfetti, setIsFiringConfetti] = useState(false);
   const [isDescriptionShowing, setIsDescriptionShowing] = useState(false);
 
   const handleToggleDescription = () => {
@@ -82,9 +82,9 @@ export const Workout = ({
     if (workout.id === "") return;
 
     if (workout.isCompleted) {
-      setTimeout(() => setWillFire(true), 300);
-    } else if (willFire) {
-      setWillFire(false);
+      setTimeout(() => setIsFiringConfetti(true), 300);
+    } else if (isFiringConfetti) {
+      setIsFiringConfetti(false);
     }
   }, [workout]);
 
@@ -263,7 +263,7 @@ export const Workout = ({
         <Title>You need to select a workout!</Title>
       )}
 
-      {workout.isCompleted && <Confetti fire={willFire} />}
+      {workout.isCompleted && <Confetti isFiring={isFiringConfetti} />}
     </Container>
   );
 };

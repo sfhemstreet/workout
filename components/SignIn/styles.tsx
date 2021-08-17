@@ -1,10 +1,8 @@
 import styled from "@emotion/styled";
 import { TransitionStatus } from "react-transition-group";
-import { BoxShadowFlicker, FadeInKeyframe } from "../../styles/keyframes";
+import { FadeInKeyframe } from "../../styles/keyframes";
 import { SurfaceElevation } from "../../styles/SurfaceElevation";
-import { InlineButton, SecondaryButton } from "../Buttons";
-import { TertiaryButton } from "../Buttons/TertiaryButton";
-import { FadeInOutMixin } from "../FadeInOut";
+import { TertiaryButton, InlineButton } from "../Buttons";
 
 export const Container = styled.form<{ transitionStatus: TransitionStatus }>`
   position: relative;

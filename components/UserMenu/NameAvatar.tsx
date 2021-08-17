@@ -12,6 +12,19 @@ type NameAvatarProps = {
   isSideBar?: boolean;
 };
 
+/**
+ * NameAvatar
+ * 
+ * Displays the user's name and avatar.
+ * Avatar is a button which is controlled by `onClick` prop.
+ * 
+ * @param name current user's name
+ * @param isAuthenticated status of user's login
+ * @param isLoading loading  status of user
+ * @param avatar user's avatar src
+ * @param onClick function called when avatar is clicked
+ * @param isSideBar boolean, set to `true` when this component is being rendered inside SideBar component
+ */
 export const NameAvatar = ({
   name,
   isAuthenticated,

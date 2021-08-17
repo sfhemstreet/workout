@@ -7,6 +7,14 @@ type SoundTogglerProps = {
   toggleSound: () => void;
 };
 
+/**
+ * SoundToggler
+ * 
+ * Toggler to change user's sound setting.
+ * 
+ * @param isSoundOn current status of sound setting
+ * @param toggleSound function called when user changes sound setting
+ */
 export const SoundToggler = ({ isSoundOn, toggleSound }: SoundTogglerProps) => (
   <Toggler
     title="Sound"

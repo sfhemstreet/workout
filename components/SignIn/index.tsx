@@ -5,7 +5,6 @@ import { SignInInputs } from "./SignInInputs";
 import {
   SwitchTransition,
   Transition,
-  TransitionStatus,
 } from "react-transition-group";
 import { LoadingShimmer } from "../LoadingShimmer";
 import { ForgotPassword } from "./ForgotPassword";

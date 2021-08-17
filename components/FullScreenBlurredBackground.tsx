@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef } from "react";
 import { TransitionStatus } from "react-transition-group";
 import { useTrapFocus } from "../hooks/useTrapFocus";
 

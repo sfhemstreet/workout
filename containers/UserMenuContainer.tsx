@@ -1,16 +1,15 @@
 import styled from "@emotion/styled";
 import isEqual from "lodash.isequal";
-import React, { useEffect, useMemo, useState } from "react";
-import { Center } from "../components/WorkoutForm/styles";
+import React, { useEffect, useState } from "react";
+
 import { FadeInOut } from "../components/FadeInOut";
 import { FullscreenBlurredBackground } from "../components/FullScreenBlurredBackground";
-
 import { UserMenu } from "../components/UserMenu";
 import { useWindowDimensions } from "../hooks/useWindowDimensions";
 import { toggleSignInModal } from "../redux/ducks/signInModal";
 import { toggleSound } from "../redux/ducks/sound";
 import { toggleTheme } from "../redux/ducks/theme";
-import { signOutUser, userDeleteBegin } from "../redux/ducks/user";
+import { signOutUser } from "../redux/ducks/user";
 import { closeUserSideBar, toggleUserSideBar } from "../redux/ducks/userSideBar";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { isMedia } from "../styles/media";

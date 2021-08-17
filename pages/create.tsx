@@ -1,11 +1,12 @@
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
-import { v4 as uuid } from "uuid";
+
 import { WorkoutForm } from "../components/WorkoutForm";
 import { changeActiveWorkout } from "../redux/ducks/activeWorkout";
 import { createWorkout } from "../redux/ducks/workouts";
 import { useAppSelector, useAppDispatch } from "../redux/hooks";
 import { Workout } from "../types";
+import { uuid } from "../utils/uuid";
 
 /**
  * Create Page

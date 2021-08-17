@@ -13,6 +13,18 @@ export interface ContentProps extends UserMenuProps {
   isSideBar?: boolean;
 }
 
+/**
+ * Content
+ * 
+ * User Menu content
+ * 
+ * @param user User object
+ * @param themeType 'DARK' or 'LIGHT'
+ * @param actions actions object
+ * @param isSoundOn boolean
+ * @param isSideBar if this content is featured inside of a SideBar component set to `true`   
+ * @param isOpen if this content is featured inside of a SideBar component and the sidebar is open set this to `true`
+ */
 export const Content = ({
   user,
   themeType,

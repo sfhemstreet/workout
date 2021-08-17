@@ -1,9 +1,8 @@
-import { v4 as uuid } from "uuid";
-
 import { Exercise } from "../../types";
 import { REST_PERIOD } from "../../constants";
 import { Difficulty } from "../../types/Difficulty";
 import { Tag } from "../../types/Tag";
+import { uuid } from "../../utils/uuid";
 
 export interface ExerciseState extends Exercise {
   nameError: string | undefined;

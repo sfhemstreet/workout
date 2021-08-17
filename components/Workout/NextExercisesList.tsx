@@ -12,6 +12,16 @@ type NextExercisesListProps = {
   isStarted?: boolean;
 };
 
+/**
+ * NextExerciseList
+ * 
+ * Displays list of exercises in workout, 
+ * highlight's of the current exercise and crosses out completed exercises.
+ * 
+ * @param exercises exercises in workout
+ * @param currentExerciseId current exercise's id
+ * @param isStarted workouts running status
+ */
 export const NextExercisesList = ({
   exercises,
   currentExerciseId,

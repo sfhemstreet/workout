@@ -1,7 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import firebase from "firebase";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { checkUsername } from "../../components/SignIn/utils";
+import { checkUsername } from "../../components/SignIn/helpers";
 import { CreateUserAPIBody } from "../../types/CreateUserAPIBody";
 import { firebaseAdmin } from "../../utils/api/firebaseAdmin";
 import { getHttpMethod } from "../../utils/api/getHttpMethod";

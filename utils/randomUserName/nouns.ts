@@ -1,3 +1,6 @@
+/**
+ * nouns for creating random username
+ */
 export const nouns = [
   "Aardvark",
   "Albatross",

@@ -28,7 +28,7 @@ import {
   ValidationRow,
   ValidationSpan,
 } from "./styles";
-import { checkPassword, checkUsername } from "./utils";
+import { checkPassword, checkUsername } from "./helpers";
 
 type OnSubmitArgs = {
   email: string;

@@ -1,5 +1,4 @@
 import { User } from "../../types";
-import { CompletedWorkout } from "../../types/CompletedWorkout";
 
 // State
 export const DEFAULT_USER_STATE: User = {

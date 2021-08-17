@@ -18,6 +18,19 @@ export type UserMenuProps = {
   };
 };
 
+/**
+ * UserMenu
+ * 
+ * Displays User controls.
+ * 
+ * On small screens Content is rendered inside SideBar component.
+ * 
+ * @param isOpen controls SideBar  component for small screens
+ * @param isSoundOn boolean for sound toggle
+ * @param user current User 
+ * @param themeType 'DARK' or 'LIGHT'
+ * @param actions actions object
+ */
 export const UserMenu = ({
   isOpen,
   isSoundOn,

@@ -12,7 +12,7 @@ import {
   editWorkout,
   removeWorkout,
 } from "../redux/ducks/workouts";
-import { v4 as uuid } from "uuid";
+
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { Workout } from "../types";
 import isEqual from "lodash.isequal";
@@ -21,6 +21,7 @@ import { Row } from "../components/WorkoutForm/styles";
 import { LoadingShimmer } from "../components/LoadingShimmer";
 import { SwitchTransition, Transition } from "react-transition-group";
 import { pushToClone } from "../utils/pushToClone";
+import { uuid } from "../utils/uuid";
 
 /**
  * Edit Workout Page

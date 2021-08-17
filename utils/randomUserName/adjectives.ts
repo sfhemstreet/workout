@@ -1,3 +1,6 @@
+/**
+ * adjectives for creating random username.
+ */
 export const adjectives = [
   "Anonymous",
   "Unknown",

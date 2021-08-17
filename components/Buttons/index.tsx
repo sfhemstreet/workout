@@ -1,5 +1,6 @@
-export { SecondaryButton } from "./SecondaryButton";
 export { SubmitButton } from "./SubmitButton";
+export { SecondaryButton } from "./SecondaryButton";
+export { TertiaryButton } from "./TertiaryButton";
 export { Hamburger } from "./Hamburger";
 export { SmallRoundButton } from "./SmallRoundButton";
 export { ArrowButton } from "./ArrowButton";

@@ -2,13 +2,11 @@ import styled from "@emotion/styled";
 import React from "react";
 import { TransitionStatus } from "react-transition-group";
 
-import { SurfaceElevation } from "../styles/SurfaceElevation";
-import { ActiveWorkout, ThemeType, User, Workouts } from "../types";
+import { ActiveWorkout, Workouts } from "../types";
 import { Hamburger } from "./Buttons";
 import { FadeInOut } from "./FadeInOut";
 import { SideBar } from "./SideBar";
 import { H4, H5, P } from "./Txt";
-import { InlineButton } from "./Buttons/InlineButton";
 import { BoxShadowFlicker } from "../styles/keyframes";
 
 type NavMenuProps = {

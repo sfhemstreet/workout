@@ -8,6 +8,14 @@ type ThemeTogglerProps = {
   toggleTheme: () => void;
 };
 
+/**
+ * ThemeToggler
+ * 
+ * Controls user's ThemeType setting.
+ * 
+ * @param currentTheme current user's ThemeType, 'DARK' or 'LIGHT' 
+ * @param toggleTheme function called when user changes ThemeType 
+ */
 export const ThemeToggler = ({
   currentTheme,
   toggleTheme,

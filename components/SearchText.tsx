@@ -1,19 +1,15 @@
 import { useEffect, useReducer } from "react";
-import { combineLatest, from, of, Subject } from "rxjs";
+import { of, Subject } from "rxjs";
 import {
   catchError,
-  debounce,
   debounceTime,
-  map,
   switchMap,
   tap,
 } from "rxjs/operators";
 
-import { firebase } from "../firebase";
 import { searchWorkouts$ } from "../redux/epics/util/searchWorkouts$";
 import { Workout } from "../types";
 import { Tag } from "../types/Tag";
-import { removeDuplicates } from "../utils/removeDuplicates";
 import { TextInput } from "./TextInput";
 
 const searchInput$ = new Subject<string>();

@@ -1,16 +1,13 @@
-import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import { BoxShadowFlicker } from "../styles/keyframes";
+
 import { SurfaceElevation } from "../styles/SurfaceElevation";
 import { Tag, tags } from "../types/Tag";
-import { InlineButton, SelectableInlineButton } from "./Buttons";
-import { Row } from "./WorkoutForm/styles";
+import { SelectableInlineButton } from "./Buttons";
 
 type TagSelectorProps = {
   onClick: (tag: Tag) => void;
   selectedTags: Tag[];
 };
-
 
 /**
  * Tag Selector

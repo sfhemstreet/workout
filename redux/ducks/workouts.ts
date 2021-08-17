@@ -1,5 +1,4 @@
 import { Workouts, Workout } from "../../types";
-import { v4 as uuid } from "uuid";
 
 // State
 export const DEFAULT_WORKOUTS_STATE: Workouts = {

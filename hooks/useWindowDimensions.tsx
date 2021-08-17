@@ -1,5 +1,11 @@
 import { useEffect, useState } from "react";
 
+/**
+ * useWindowDimensions
+ *
+ * Returns window dimensions, width and height in px. 
+ * Stays updated on window resize.
+ */
 export function useWindowDimensions() {
   const [dimensions, setDimensions] = useState({ x: 375, y: 800 });
 
@@ -18,11 +24,7 @@ export function useWindowDimensions() {
     handleResize();
     window.addEventListener("resize", handleResize);
 
-    return () => {
-      if (typeof window === "undefined") return;
-
-      window.removeEventListener("resize", handleResize);
-    };
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return {

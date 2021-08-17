@@ -1,20 +1,14 @@
 import styled from "@emotion/styled";
-import isEqual from "lodash.isequal";
-import React, { useEffect, useReducer, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { SwitchTransition, Transition } from "react-transition-group";
-import { combineLatest, from, of, Subject, timer } from "rxjs";
+import { Subject} from "rxjs";
 import { filter, map, switchMap, tap } from "rxjs/operators";
 
-import { firebase } from "../firebase";
-import { searchWorkouts$ } from "../redux/epics/util/searchWorkouts$";
 import { searchWorkoutsByTags$ } from "../redux/epics/util/searchWorkoutsByTags$";
 import { SurfaceElevation } from "../styles/SurfaceElevation";
 import { Workout } from "../types";
 import { Tag } from "../types/Tag";
-import { removeDuplicates } from "../utils/removeDuplicates";
-import { LoadingShimmer } from "./LoadingShimmer";
 import { TagSelector } from "./TagSelector";
-import { TextInput } from "./TextInput";
 import { H3, P } from "./Txt";
 import { WorkoutPreview } from "./WorkoutPreview";
 import { WorkoutPreviewLoadingShimmers } from "./WorkoutPreviewLoadingShimmers";

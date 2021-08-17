@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { useState } from "react";
 import { TransitionStatus } from "react-transition-group";
+
 import { FadeInKeyframe } from "../styles/keyframes";
 import { FadeInOut } from "./FadeInOut";
 import { HiddenLabel } from "./HiddenLabel";

@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import React from "react";
+
 import { SurfaceElevation } from "../../styles/SurfaceElevation";
 import { getExerciseDurationDisplayString } from "../../utils/getExerciseDurationDisplayString";
 import { SecondaryButton } from "../Buttons";
@@ -14,6 +15,18 @@ type CurrentExerciseDetailsProps = {
   currentTime: number;
 };
 
+/**
+ * CurrentExerciseDetails
+ *
+ * Displays box explaining the given exercise.
+ *
+ * @param onClose function called when user clicks the close button
+ * @param name name of exercise
+ * @param description description of exercise
+ * @param duration duration of exercise
+ * @param currentTime current time left on exercise
+ * @param repetitions number of repetitions on exercise
+ */
 export const CurrentExerciseDetails = ({
   onClose,
   name,
@@ -49,16 +62,14 @@ export const CurrentExerciseDetails = ({
           </NumberSpan>
         )}
       </P>
-      <P>Time Remaining:</P>
-      <P>
-        {duration === 0 ? (
-          "Unlimited"
-        ) : (
+      {duration !== 0 && (
+        <>
+          <P>Time Remaining:</P>
           <NumberSpan>
             {getExerciseDurationDisplayString(currentTime, true)}
           </NumberSpan>
-        )}
-      </P>
+        </>
+      )}
     </DescriptionContainer>
   </Center>
 );

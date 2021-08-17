@@ -8,13 +8,13 @@ import {
 import { SurfaceElevation } from "../styles/SurfaceElevation";
 import { User } from "../types";
 import { InlineButton, SecondaryButton, SubmitButton } from "./Buttons";
-import { FadeInOut, FadeInOutMixin } from "./FadeInOut";
+import { FadeInOutMixin } from "./FadeInOut";
 import {
   EMPTY_USERNAME,
   USERNAME_LENGTH,
   USERNAME_TAKEN,
 } from "./SignIn/constants";
-import { checkUsername } from "./SignIn/utils";
+import { checkUsername } from "./SignIn/helpers";
 import { TextInput } from "./TextInput";
 import { H1, P } from "./Txt";
 

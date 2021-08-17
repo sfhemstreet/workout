@@ -2,11 +2,10 @@ import styled from "@emotion/styled";
 import React from "react";
 
 import { REST_PERIOD } from "../../constants";
-import { SecondaryButton } from "../Buttons";
+import { TertiaryButton } from "../Buttons";
 import { Counter } from "./Counter";
 import { FadeInOut } from "../FadeInOut";
 import { H2, P } from "../Txt";
-import { TertiaryButton } from "../Buttons/TertiaryButton";
 import { css } from "@emotion/react";
 
 type CurrentExerciseDisplayProps = {
@@ -23,6 +22,23 @@ type CurrentExerciseDisplayProps = {
   nextExercise?: string;
 };
 
+/**
+ * CurrentExerciseDisplay
+ *
+ * Displays the current exercise name, button to show details, and Counter component.
+ *
+ * @param id exercise id
+ * @param name exercise name
+ * @param description exercise description
+ * @param isPaused exercise pause status
+ * @param isStarted workout running status
+ * @param isCompleted workout complete status
+ * @param duration total time for exercise
+ * @param currentTime current time left on exercise
+ * @param repetitions exercise repetitions
+ * @param onClickTitle function called when exercise name is clicked
+ * @param nextExercise name of the next exercise, if it exists
+ */
 export const CurrentExerciseDisplay = ({
   id,
   name,
@@ -73,7 +89,7 @@ export const CurrentExerciseDisplay = ({
         duration={duration}
       />
 
-      <FadeInOut isShowing={repetitions !== 0} timeout={{exit: 0}}>
+      <FadeInOut isShowing={repetitions !== 0} timeout={{ exit: 0 }}>
         <P textAlign="center">Reps: {repetitions}</P>
       </FadeInOut>
 
@@ -100,20 +116,22 @@ const Container = styled.div`
   position: relative;
 `;
 
-const TitleButton = styled(TertiaryButton)<{ noHover: boolean; }>`
+const TitleButton = styled(TertiaryButton)<{ noHover: boolean }>`
   max-height: fit-content;
   height: fit-content;
 
-  ${p => p.noHover && css`
-    &:hover {
-      background-color: inherit;
-      color: inherit;
-      box-shadow: none;
-      cursor: default;
-    }
-  `}
+  ${(p) =>
+    p.noHover &&
+    css`
+      &:hover {
+        background-color: inherit;
+        color: inherit;
+        box-shadow: none;
+        cursor: default;
+      }
+    `}
 `;
 
-const SpaceMaker = styled.div<{ shrink: boolean;}>`
-  height: ${p => p.shrink ? "fit-content" : "36px"};
+const SpaceMaker = styled.div<{ shrink: boolean }>`
+  height: ${(p) => (p.shrink ? "fit-content" : "36px")};
 `;
