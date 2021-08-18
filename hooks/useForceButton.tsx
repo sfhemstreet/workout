@@ -11,20 +11,22 @@ type ForceButtonProps = {
 };
 
 /**
- * useForceButton converts buttons from one click -> one function call,
- * to holdable buttons that call a function every 100ms of being held.
+ * useForceButton 
+ * 
+ * Converts buttons from one click -> one function call,
+ * to holdable buttons that call a function repeatedly after being held down.
  *
  * @param ref React Ref to HTMLButtonElement
  * @param func Function that is called every click/Enter key, and when button is pressed (based on frequency)
  * @param stopFunc Function that checks to see if func should still be called while button is pressed.
- * @param wait number in ms to wait till func is first called, default `10`
- * @param frequency number in ms, frequency that func will be called while button is held, default `100`
+ * @param wait number in ms to wait till func is called after button is held down, default `250`
+ * @param frequency number in ms, frequency that func will be called while button is held down, default `100`
  */
 export function useForceButton({
   ref,
   func,
   stopFunc,
-  wait = 10,
+  wait = 250,
   frequency = 100,
 }: ForceButtonProps) {
   useEffect(() => {
@@ -46,7 +48,7 @@ export function useForceButton({
       )
     );
 
-    const stream$ = mouseDown$.pipe(
+    const holdsStream$ = mouseDown$.pipe(
       switchMap((event) =>
         timer(wait, frequency).pipe(
           takeWhile(() => stopFunc(event)),
@@ -56,7 +58,12 @@ export function useForceButton({
       )
     );
 
-    const subscription = stream$.subscribe();
+    const clickStream$ = fromEvent(ref.current, "click").pipe(
+      filter((evt) => stopFunc(evt)),
+      tap((evt) => func(evt))
+    );
+
+    const subscription = merge(holdsStream$, clickStream$).subscribe();
 
     return () => subscription.unsubscribe();
   }, [ref]);

@@ -1,0 +1,469 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AccountSettings disables inputs for non-authorized user 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <article
+        class="css-1dwqm29-Container-SurfaceElevation-FadeInOutMixin ez4i7tp2"
+      >
+        <button
+          class="css-1mdi044-TertiaryButton-SurfaceElevation-InlineButton-CloseBtn ez4i7tp0"
+        >
+          ✕
+        </button>
+        <h1
+          class="css-1891q7e-H1-TextMixin e1ez90bh0"
+        >
+          Account Settings
+        </h1>
+        <p
+          class="css-44y8rz-P-TextMixin elrci8c0"
+        >
+          You need to be logged in to change your username or avatar.
+        </p>
+        <div
+          class="css-y7gdxi-Container e19wqegw5"
+        >
+          <input
+            class="css-1jng164-Input e19wqegw3"
+            disabled=""
+            id="account-settings-name"
+            placeholder="Want a new username?"
+            type="text"
+            value="Temp User"
+          />
+          <label
+            class="css-rvqzo6-Label e19wqegw4"
+            for="account-settings-name"
+          >
+            Username
+          </label>
+        </div>
+        <div
+          class="css-a4zdfd-Row ez4i7tp1"
+        >
+          <button
+            class="css-ak8ya3-SecondaryButton-SurfaceElevation e1dg5x0l0"
+            disabled=""
+          >
+            Change Username
+          </button>
+        </div>
+        <div
+          class="css-y7gdxi-Container e19wqegw5"
+        >
+          <input
+            class="css-1jng164-Input e19wqegw3"
+            disabled=""
+            id="account-settings-avatar"
+            placeholder="Image URl"
+            type="text"
+            value=""
+          />
+          <label
+            class="css-rvqzo6-Label e19wqegw4"
+            for="account-settings-avatar"
+          >
+            Avatar URL
+          </label>
+        </div>
+        <div
+          class="css-a4zdfd-Row ez4i7tp1"
+        >
+          <button
+            class="css-ak8ya3-SecondaryButton-SurfaceElevation e1dg5x0l0"
+            disabled=""
+          >
+            Change Avatar
+          </button>
+        </div>
+        <br />
+        <div
+          class="css-a5uao8-Row ez4i7tp1"
+        >
+          <button
+            class="css-ak8ya3-SecondaryButton-SurfaceElevation e1dg5x0l0"
+          >
+            Close
+          </button>
+          <button
+            class="css-ak8ya3-SecondaryButton-SurfaceElevation e1dg5x0l0"
+          >
+            Delete Account
+          </button>
+        </div>
+      </article>
+    </div>
+  </body>,
+  "container": <div>
+    <article
+      class="css-1dwqm29-Container-SurfaceElevation-FadeInOutMixin ez4i7tp2"
+    >
+      <button
+        class="css-1mdi044-TertiaryButton-SurfaceElevation-InlineButton-CloseBtn ez4i7tp0"
+      >
+        ✕
+      </button>
+      <h1
+        class="css-1891q7e-H1-TextMixin e1ez90bh0"
+      >
+        Account Settings
+      </h1>
+      <p
+        class="css-44y8rz-P-TextMixin elrci8c0"
+      >
+        You need to be logged in to change your username or avatar.
+      </p>
+      <div
+        class="css-y7gdxi-Container e19wqegw5"
+      >
+        <input
+          class="css-1jng164-Input e19wqegw3"
+          disabled=""
+          id="account-settings-name"
+          placeholder="Want a new username?"
+          type="text"
+          value="Temp User"
+        />
+        <label
+          class="css-rvqzo6-Label e19wqegw4"
+          for="account-settings-name"
+        >
+          Username
+        </label>
+      </div>
+      <div
+        class="css-a4zdfd-Row ez4i7tp1"
+      >
+        <button
+          class="css-ak8ya3-SecondaryButton-SurfaceElevation e1dg5x0l0"
+          disabled=""
+        >
+          Change Username
+        </button>
+      </div>
+      <div
+        class="css-y7gdxi-Container e19wqegw5"
+      >
+        <input
+          class="css-1jng164-Input e19wqegw3"
+          disabled=""
+          id="account-settings-avatar"
+          placeholder="Image URl"
+          type="text"
+          value=""
+        />
+        <label
+          class="css-rvqzo6-Label e19wqegw4"
+          for="account-settings-avatar"
+        >
+          Avatar URL
+        </label>
+      </div>
+      <div
+        class="css-a4zdfd-Row ez4i7tp1"
+      >
+        <button
+          class="css-ak8ya3-SecondaryButton-SurfaceElevation e1dg5x0l0"
+          disabled=""
+        >
+          Change Avatar
+        </button>
+      </div>
+      <br />
+      <div
+        class="css-a5uao8-Row ez4i7tp1"
+      >
+        <button
+          class="css-ak8ya3-SecondaryButton-SurfaceElevation e1dg5x0l0"
+        >
+          Close
+        </button>
+        <button
+          class="css-ak8ya3-SecondaryButton-SurfaceElevation e1dg5x0l0"
+        >
+          Delete Account
+        </button>
+      </div>
+    </article>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`AccountSettings renders authorized user inputs 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <article
+        class="css-1dwqm29-Container-SurfaceElevation-FadeInOutMixin ez4i7tp2"
+      >
+        <button
+          class="css-1mdi044-TertiaryButton-SurfaceElevation-InlineButton-CloseBtn ez4i7tp0"
+        >
+          ✕
+        </button>
+        <h1
+          class="css-1891q7e-H1-TextMixin e1ez90bh0"
+        >
+          Account Settings
+        </h1>
+        <div
+          class="css-y7gdxi-Container e19wqegw5"
+        >
+          <input
+            class="css-1jng164-Input e19wqegw3"
+            id="account-settings-name"
+            placeholder="Want a new username?"
+            type="text"
+            value="mah_name"
+          />
+          <label
+            class="css-1g1fvn4-Label e19wqegw4"
+            for="account-settings-name"
+          >
+            Username
+          </label>
+        </div>
+        <div
+          class="css-a4zdfd-Row ez4i7tp1"
+        >
+          <button
+            class="css-ak8ya3-SecondaryButton-SurfaceElevation e1dg5x0l0"
+          >
+            Change Username
+          </button>
+        </div>
+        <div
+          class="css-y7gdxi-Container e19wqegw5"
+        >
+          <input
+            class="css-1jng164-Input e19wqegw3"
+            id="account-settings-avatar"
+            placeholder="Image URl"
+            type="text"
+            value="https://robohash.org/mah_name"
+          />
+          <label
+            class="css-1g1fvn4-Label e19wqegw4"
+            for="account-settings-avatar"
+          >
+            Avatar URL
+          </label>
+        </div>
+        <div
+          class="css-a4zdfd-Row ez4i7tp1"
+        >
+          <button
+            class="css-ak8ya3-SecondaryButton-SurfaceElevation e1dg5x0l0"
+          >
+            Change Avatar
+          </button>
+        </div>
+        <br />
+        <div
+          class="css-a5uao8-Row ez4i7tp1"
+        >
+          <button
+            class="css-ak8ya3-SecondaryButton-SurfaceElevation e1dg5x0l0"
+          >
+            Close
+          </button>
+          <button
+            class="css-ak8ya3-SecondaryButton-SurfaceElevation e1dg5x0l0"
+          >
+            Delete Account
+          </button>
+        </div>
+      </article>
+    </div>
+  </body>,
+  "container": <div>
+    <article
+      class="css-1dwqm29-Container-SurfaceElevation-FadeInOutMixin ez4i7tp2"
+    >
+      <button
+        class="css-1mdi044-TertiaryButton-SurfaceElevation-InlineButton-CloseBtn ez4i7tp0"
+      >
+        ✕
+      </button>
+      <h1
+        class="css-1891q7e-H1-TextMixin e1ez90bh0"
+      >
+        Account Settings
+      </h1>
+      <div
+        class="css-y7gdxi-Container e19wqegw5"
+      >
+        <input
+          class="css-1jng164-Input e19wqegw3"
+          id="account-settings-name"
+          placeholder="Want a new username?"
+          type="text"
+          value="mah_name"
+        />
+        <label
+          class="css-1g1fvn4-Label e19wqegw4"
+          for="account-settings-name"
+        >
+          Username
+        </label>
+      </div>
+      <div
+        class="css-a4zdfd-Row ez4i7tp1"
+      >
+        <button
+          class="css-ak8ya3-SecondaryButton-SurfaceElevation e1dg5x0l0"
+        >
+          Change Username
+        </button>
+      </div>
+      <div
+        class="css-y7gdxi-Container e19wqegw5"
+      >
+        <input
+          class="css-1jng164-Input e19wqegw3"
+          id="account-settings-avatar"
+          placeholder="Image URl"
+          type="text"
+          value="https://robohash.org/mah_name"
+        />
+        <label
+          class="css-1g1fvn4-Label e19wqegw4"
+          for="account-settings-avatar"
+        >
+          Avatar URL
+        </label>
+      </div>
+      <div
+        class="css-a4zdfd-Row ez4i7tp1"
+      >
+        <button
+          class="css-ak8ya3-SecondaryButton-SurfaceElevation e1dg5x0l0"
+        >
+          Change Avatar
+        </button>
+      </div>
+      <br />
+      <div
+        class="css-a5uao8-Row ez4i7tp1"
+      >
+        <button
+          class="css-ak8ya3-SecondaryButton-SurfaceElevation e1dg5x0l0"
+        >
+          Close
+        </button>
+        <button
+          class="css-ak8ya3-SecondaryButton-SurfaceElevation e1dg5x0l0"
+        >
+          Delete Account
+        </button>
+      </div>
+    </article>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

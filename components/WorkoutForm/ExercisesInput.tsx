@@ -29,7 +29,7 @@ type ExercisesInputProps = {
 
 /**
  * ExercisesInput
- * 
+ *
  * Inputs for adding exercises and rest periods to workout.
  *
  * @param exercises exercises in workout
@@ -214,12 +214,7 @@ export const ExercisesInput = ({
                     isOutlined
                     isRequired
                   />
-                  {/* Exercise Name Options */}
-                  <datalist id="exercises-data-list">
-                    {preparedExercises.map((ex, i) => (
-                      <option key={i} value={ex.name} />
-                    ))}
-                  </datalist>
+
                   {/* Exercise Description */}
                   <TextInput
                     id={`exercise-description-${index}`}
@@ -262,5 +257,12 @@ export const ExercisesInput = ({
         </Transition>
       ))}
     </TransitionGroup>
+
+    {/* Exercise Name Options */}
+    <datalist id="exercises-data-list">
+      {preparedExercises.map((ex, i) => (
+        <option key={i} value={ex.name} />
+      ))}
+    </datalist>
   </>
 );

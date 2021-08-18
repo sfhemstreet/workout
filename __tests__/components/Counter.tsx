@@ -7,3 +7,10 @@ test("Counter renders the correct time", () => {
 
   expect(h1).toBeInstanceOf(HTMLElement);
 });
+
+test("Counter displays 'PAUSED' when paused", () => {
+  const counter = render(<Counter duration={50} isPaused={true} shouldReset={false} currentTime={13} />);
+  const paused = counter.queryByText('PAUSED');
+
+  expect(paused).toBeInstanceOf(HTMLElement);
+})

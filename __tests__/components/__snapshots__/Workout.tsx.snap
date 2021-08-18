@@ -1,0 +1,727 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Workout renders properly 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="css-dsxet2-Container e1jr9ft612"
+      >
+        <div
+          class="css-1msu9jd-Top e1jr9ft611"
+        >
+          <div
+            class="css-jkwt5r-Title e1jr9ft610"
+          >
+            Workout:
+            <h4
+              class="css-13j9mg8-H4-TextMixin e1uetepz0"
+            >
+              Workout 1
+            </h4>
+          </div>
+          <section
+            class="css-14vvsgy-Container e2o2v6w0"
+          >
+            Round
+            <span>
+              2
+            </span>
+            of 
+            3
+          </section>
+        </div>
+        <div
+          class="css-jrlue4-FadableDiv-FadeInOutMixin-Exercise e1jr9ft69"
+        >
+          <div
+            class="css-y4beyk-Container erpp7bl2"
+          >
+            <button
+              aria-label="View Exercise Description"
+              class="css-1btwv9f-TertiaryButton-SurfaceElevation-TitleButton erpp7bl1"
+              data-microtip-position="bottom"
+              role="tooltip"
+            >
+              <h2
+                class="css-1vcqgq1-H2-TextMixin ewijl6f0"
+              >
+                Exercise 1
+              </h2>
+            </button>
+            <div
+              class="css-l6wh3n-Container-SurfaceElevation e1nx9dx85"
+            >
+              <div
+                class="css-124tvsf-Paused e1nx9dx80"
+              >
+                <h1
+                  class="css-1891q7e-H1-TextMixin e1ez90bh0"
+                >
+                  PAUSED
+                </h1>
+              </div>
+              <h1
+                class="css-1gwmhuz-Time e1nx9dx84"
+              >
+                5
+              </h1>
+              <svg
+                class="css-hbuico-SVG e1nx9dx83"
+              >
+                <defs>
+                  <lineargradient
+                    id="awesome-counter-gradient"
+                    spreadMethod="pad"
+                    x1="0%"
+                    x2="0%"
+                    y1="0%"
+                    y2="100%"
+                  >
+                    <stop
+                      offset="0%"
+                      stop-color="rgb(187, 134, 252)"
+                    />
+                    <stop
+                      offset="51%"
+                      stop-color="rgb(3, 218, 198)"
+                    />
+                    <stop
+                      offset="100%"
+                      stop-color="rgb(55, 0, 179)"
+                    />
+                  </lineargradient>
+                </defs>
+                <circle
+                  class="css-kwiswx-CircleNoAnimation-Circle e1nx9dx81"
+                />
+              </svg>
+            </div>
+            <div
+              class="css-1i0uwid-SpaceMaker erpp7bl0"
+            >
+              <div
+                class="css-jnb7cp-Container-FadeInOutMixin eolhi291"
+              >
+                <p
+                  class="css-44y8rz-P-TextMixin elrci8c0"
+                >
+                  Next Up: 
+                  Exercise 2
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="css-508ke0-FadableDiv-FadeInOutMixin-List e1jr9ft68"
+        >
+          <div
+            class="css-16xm46a-Container-SurfaceElevation es7f79g3"
+          >
+            <div
+              class="css-f6kk0r-Title es7f79g0"
+            >
+              <h5>
+                Exercise
+              </h5>
+              <h5>
+                Duration/Reps
+              </h5>
+            </div>
+            <ol
+              class="css-o2mk7l-List-SurfaceElevation es7f79g2"
+            >
+              <li
+                class="css-14xr9ka-Item es7f79g1"
+              >
+                <span>
+                  Exercise 1
+                  :
+                </span>
+                <span
+                  class="css-v5jw6b-NumberSpan-TextMixin evnodtx0"
+                >
+                  0:10
+                </span>
+              </li>
+              <li
+                class="css-840qmy-Item es7f79g1"
+              >
+                <span>
+                  Exercise 2
+                  :
+                </span>
+                <span
+                  class="css-v5jw6b-NumberSpan-TextMixin evnodtx0"
+                >
+                  0:20
+                </span>
+              </li>
+              <li
+                class="css-840qmy-Item es7f79g1"
+              >
+                <span>
+                  Exercise 3
+                  :
+                </span>
+                <span
+                  class="css-v5jw6b-NumberSpan-TextMixin evnodtx0"
+                >
+                  30
+                </span>
+              </li>
+            </ol>
+          </div>
+        </div>
+        <ul
+          class="css-c9jeew-ActionsPanel e1jr9ft66"
+        >
+          <li
+            class="css-l6sgid-PreviousArea-FadeInOutMixin e1jr9ft64"
+          >
+            <button
+              class="css-ak8ya3-SecondaryButton-SurfaceElevation e1dg5x0l0"
+            >
+              Back
+            </button>
+          </li>
+          <li
+            class="css-nsp0rf-NextArea-FadeInOutMixin e1jr9ft62"
+          >
+            <button
+              class="css-ak8ya3-SecondaryButton-SurfaceElevation e1dg5x0l0"
+            >
+              Next
+            </button>
+          </li>
+          <li
+            class="css-o2jgbv-PauseArea-FadeInOutMixin e1jr9ft63"
+          >
+            <button
+              class="css-ak8ya3-SecondaryButton-SurfaceElevation e1dg5x0l0"
+            >
+              Pause
+            </button>
+          </li>
+          <li
+            class="css-11q3x0g-StartQuitArea e1jr9ft65"
+          >
+            <button
+              class="css-1gam594-SecondaryButton-SurfaceElevation-StartQuitBtn e1jr9ft60"
+            >
+              Quit
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="css-dsxet2-Container e1jr9ft612"
+    >
+      <div
+        class="css-1msu9jd-Top e1jr9ft611"
+      >
+        <div
+          class="css-jkwt5r-Title e1jr9ft610"
+        >
+          Workout:
+          <h4
+            class="css-13j9mg8-H4-TextMixin e1uetepz0"
+          >
+            Workout 1
+          </h4>
+        </div>
+        <section
+          class="css-14vvsgy-Container e2o2v6w0"
+        >
+          Round
+          <span>
+            2
+          </span>
+          of 
+          3
+        </section>
+      </div>
+      <div
+        class="css-jrlue4-FadableDiv-FadeInOutMixin-Exercise e1jr9ft69"
+      >
+        <div
+          class="css-y4beyk-Container erpp7bl2"
+        >
+          <button
+            aria-label="View Exercise Description"
+            class="css-1btwv9f-TertiaryButton-SurfaceElevation-TitleButton erpp7bl1"
+            data-microtip-position="bottom"
+            role="tooltip"
+          >
+            <h2
+              class="css-1vcqgq1-H2-TextMixin ewijl6f0"
+            >
+              Exercise 1
+            </h2>
+          </button>
+          <div
+            class="css-l6wh3n-Container-SurfaceElevation e1nx9dx85"
+          >
+            <div
+              class="css-124tvsf-Paused e1nx9dx80"
+            >
+              <h1
+                class="css-1891q7e-H1-TextMixin e1ez90bh0"
+              >
+                PAUSED
+              </h1>
+            </div>
+            <h1
+              class="css-1gwmhuz-Time e1nx9dx84"
+            >
+              5
+            </h1>
+            <svg
+              class="css-hbuico-SVG e1nx9dx83"
+            >
+              <defs>
+                <lineargradient
+                  id="awesome-counter-gradient"
+                  spreadMethod="pad"
+                  x1="0%"
+                  x2="0%"
+                  y1="0%"
+                  y2="100%"
+                >
+                  <stop
+                    offset="0%"
+                    stop-color="rgb(187, 134, 252)"
+                  />
+                  <stop
+                    offset="51%"
+                    stop-color="rgb(3, 218, 198)"
+                  />
+                  <stop
+                    offset="100%"
+                    stop-color="rgb(55, 0, 179)"
+                  />
+                </lineargradient>
+              </defs>
+              <circle
+                class="css-kwiswx-CircleNoAnimation-Circle e1nx9dx81"
+              />
+            </svg>
+          </div>
+          <div
+            class="css-1i0uwid-SpaceMaker erpp7bl0"
+          >
+            <div
+              class="css-jnb7cp-Container-FadeInOutMixin eolhi291"
+            >
+              <p
+                class="css-44y8rz-P-TextMixin elrci8c0"
+              >
+                Next Up: 
+                Exercise 2
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="css-508ke0-FadableDiv-FadeInOutMixin-List e1jr9ft68"
+      >
+        <div
+          class="css-16xm46a-Container-SurfaceElevation es7f79g3"
+        >
+          <div
+            class="css-f6kk0r-Title es7f79g0"
+          >
+            <h5>
+              Exercise
+            </h5>
+            <h5>
+              Duration/Reps
+            </h5>
+          </div>
+          <ol
+            class="css-o2mk7l-List-SurfaceElevation es7f79g2"
+          >
+            <li
+              class="css-14xr9ka-Item es7f79g1"
+            >
+              <span>
+                Exercise 1
+                :
+              </span>
+              <span
+                class="css-v5jw6b-NumberSpan-TextMixin evnodtx0"
+              >
+                0:10
+              </span>
+            </li>
+            <li
+              class="css-840qmy-Item es7f79g1"
+            >
+              <span>
+                Exercise 2
+                :
+              </span>
+              <span
+                class="css-v5jw6b-NumberSpan-TextMixin evnodtx0"
+              >
+                0:20
+              </span>
+            </li>
+            <li
+              class="css-840qmy-Item es7f79g1"
+            >
+              <span>
+                Exercise 3
+                :
+              </span>
+              <span
+                class="css-v5jw6b-NumberSpan-TextMixin evnodtx0"
+              >
+                30
+              </span>
+            </li>
+          </ol>
+        </div>
+      </div>
+      <ul
+        class="css-c9jeew-ActionsPanel e1jr9ft66"
+      >
+        <li
+          class="css-l6sgid-PreviousArea-FadeInOutMixin e1jr9ft64"
+        >
+          <button
+            class="css-ak8ya3-SecondaryButton-SurfaceElevation e1dg5x0l0"
+          >
+            Back
+          </button>
+        </li>
+        <li
+          class="css-nsp0rf-NextArea-FadeInOutMixin e1jr9ft62"
+        >
+          <button
+            class="css-ak8ya3-SecondaryButton-SurfaceElevation e1dg5x0l0"
+          >
+            Next
+          </button>
+        </li>
+        <li
+          class="css-o2jgbv-PauseArea-FadeInOutMixin e1jr9ft63"
+        >
+          <button
+            class="css-ak8ya3-SecondaryButton-SurfaceElevation e1dg5x0l0"
+          >
+            Pause
+          </button>
+        </li>
+        <li
+          class="css-11q3x0g-StartQuitArea e1jr9ft65"
+        >
+          <button
+            class="css-1gam594-SecondaryButton-SurfaceElevation-StartQuitBtn e1jr9ft60"
+          >
+            Quit
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
+
+exports[`Workout with Confetti renders properly 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="css-dsxet2-Container e1jr9ft612"
+      >
+        <div
+          class="css-1msu9jd-Top e1jr9ft611"
+        >
+          <div
+            class="css-jkwt5r-Title e1jr9ft610"
+          >
+            Workout:
+            <h4
+              class="css-13j9mg8-H4-TextMixin e1uetepz0"
+            >
+              Workout 1
+            </h4>
+          </div>
+          <section
+            class="css-14vvsgy-Container e2o2v6w0"
+          >
+            Round
+            <span>
+              2
+            </span>
+            of 
+            3
+          </section>
+        </div>
+        <div
+          class="css-12r5frn-Completed e1jr9ft67"
+        >
+          <h3
+            class="css-33v7o8-H3-TextMixin eyl1k3n0"
+          >
+            <span
+              class="css-v5jw6b-NumberSpan-TextMixin evnodtx0"
+            >
+              WORKOUT COMPLETED
+            </span>
+          </h3>
+          <h3
+            class="css-33v7o8-H3-TextMixin eyl1k3n0"
+          >
+            Congratulations!
+          </h3>
+        </div>
+        <ul
+          class="css-c9jeew-ActionsPanel e1jr9ft66"
+        >
+          <li
+            class="css-l6sgid-PreviousArea-FadeInOutMixin e1jr9ft64"
+          >
+            <button
+              class="css-ak8ya3-SecondaryButton-SurfaceElevation e1dg5x0l0"
+            >
+              Back
+            </button>
+          </li>
+          <li
+            class="css-nsp0rf-NextArea-FadeInOutMixin e1jr9ft62"
+          >
+            <button
+              class="css-ak8ya3-SecondaryButton-SurfaceElevation e1dg5x0l0"
+            >
+              Next
+            </button>
+          </li>
+          <li
+            class="css-o2jgbv-PauseArea-FadeInOutMixin e1jr9ft63"
+          >
+            <button
+              class="css-ak8ya3-SecondaryButton-SurfaceElevation e1dg5x0l0"
+            >
+              Pause
+            </button>
+          </li>
+          <li
+            class="css-11q3x0g-StartQuitArea e1jr9ft65"
+          >
+            <button
+              class="css-1gam594-SecondaryButton-SurfaceElevation-StartQuitBtn e1jr9ft60"
+            >
+              Quit
+            </button>
+          </li>
+        </ul>
+        <canvas
+          style="position: fixed; pointer-events: none; width: 100%; height: 100%; top: 0px; left: 0px;"
+        />
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="css-dsxet2-Container e1jr9ft612"
+    >
+      <div
+        class="css-1msu9jd-Top e1jr9ft611"
+      >
+        <div
+          class="css-jkwt5r-Title e1jr9ft610"
+        >
+          Workout:
+          <h4
+            class="css-13j9mg8-H4-TextMixin e1uetepz0"
+          >
+            Workout 1
+          </h4>
+        </div>
+        <section
+          class="css-14vvsgy-Container e2o2v6w0"
+        >
+          Round
+          <span>
+            2
+          </span>
+          of 
+          3
+        </section>
+      </div>
+      <div
+        class="css-12r5frn-Completed e1jr9ft67"
+      >
+        <h3
+          class="css-33v7o8-H3-TextMixin eyl1k3n0"
+        >
+          <span
+            class="css-v5jw6b-NumberSpan-TextMixin evnodtx0"
+          >
+            WORKOUT COMPLETED
+          </span>
+        </h3>
+        <h3
+          class="css-33v7o8-H3-TextMixin eyl1k3n0"
+        >
+          Congratulations!
+        </h3>
+      </div>
+      <ul
+        class="css-c9jeew-ActionsPanel e1jr9ft66"
+      >
+        <li
+          class="css-l6sgid-PreviousArea-FadeInOutMixin e1jr9ft64"
+        >
+          <button
+            class="css-ak8ya3-SecondaryButton-SurfaceElevation e1dg5x0l0"
+          >
+            Back
+          </button>
+        </li>
+        <li
+          class="css-nsp0rf-NextArea-FadeInOutMixin e1jr9ft62"
+        >
+          <button
+            class="css-ak8ya3-SecondaryButton-SurfaceElevation e1dg5x0l0"
+          >
+            Next
+          </button>
+        </li>
+        <li
+          class="css-o2jgbv-PauseArea-FadeInOutMixin e1jr9ft63"
+        >
+          <button
+            class="css-ak8ya3-SecondaryButton-SurfaceElevation e1dg5x0l0"
+          >
+            Pause
+          </button>
+        </li>
+        <li
+          class="css-11q3x0g-StartQuitArea e1jr9ft65"
+        >
+          <button
+            class="css-1gam594-SecondaryButton-SurfaceElevation-StartQuitBtn e1jr9ft60"
+          >
+            Quit
+          </button>
+        </li>
+      </ul>
+      <canvas
+        style="position: fixed; pointer-events: none; width: 100%; height: 100%; top: 0px; left: 0px;"
+      />
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

@@ -1,0 +1,202 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Buttons render properly 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        id="buttons-test-div"
+      >
+        <button
+          aria-label="Up"
+          class="css-1s6gjwe-Button-SurfaceElevation eccggh51"
+        >
+          <div
+            class="css-yt6a9h-Arrow eccggh50"
+            direction="Up"
+          />
+        </button>
+        <button
+          aria-label="Down"
+          class="css-1s6gjwe-Button-SurfaceElevation eccggh51"
+        >
+          <div
+            class="css-1vsw8zw-Arrow eccggh50"
+            direction="Down"
+          />
+        </button>
+        <button
+          aria-label="Up"
+          class="css-1s6gjwe-Button-SurfaceElevation eccggh51"
+          disabled=""
+        >
+          <div
+            class="css-yt6a9h-Arrow eccggh50"
+            direction="Up"
+          />
+        </button>
+        <button
+          class="css-1x0mvag-Button enmp0620"
+        >
+          <div />
+          <div />
+          <div />
+        </button>
+        <button
+          class="css-1wzz1y5-TertiaryButton-SurfaceElevation-InlineButton e1qrnbvu0"
+        >
+          Inline Button can be long
+        </button>
+        <button
+          class="css-ak8ya3-SecondaryButton-SurfaceElevation e1dg5x0l0"
+        >
+          Sec Btn
+        </button>
+        <button
+          class="css-13o0t0v-TertiaryButton-SurfaceElevation-InlineButton-SelectableInlineButton-SelectableInlineButton e1zmsnr0"
+        >
+          Selected
+        </button>
+        <button
+          class="css-1onp49w-SmallRoundButton e1d9564b0"
+        >
+          +
+        </button>
+        <button
+          class="css-4i4kxd-SubmitButton epz85c30"
+        >
+          Submit
+        </button>
+        <button
+          class="css-1m9v92z-TertiaryButton-SurfaceElevation eq3odzy0"
+        >
+          3rd Btn
+        </button>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      id="buttons-test-div"
+    >
+      <button
+        aria-label="Up"
+        class="css-1s6gjwe-Button-SurfaceElevation eccggh51"
+      >
+        <div
+          class="css-yt6a9h-Arrow eccggh50"
+          direction="Up"
+        />
+      </button>
+      <button
+        aria-label="Down"
+        class="css-1s6gjwe-Button-SurfaceElevation eccggh51"
+      >
+        <div
+          class="css-1vsw8zw-Arrow eccggh50"
+          direction="Down"
+        />
+      </button>
+      <button
+        aria-label="Up"
+        class="css-1s6gjwe-Button-SurfaceElevation eccggh51"
+        disabled=""
+      >
+        <div
+          class="css-yt6a9h-Arrow eccggh50"
+          direction="Up"
+        />
+      </button>
+      <button
+        class="css-1x0mvag-Button enmp0620"
+      >
+        <div />
+        <div />
+        <div />
+      </button>
+      <button
+        class="css-1wzz1y5-TertiaryButton-SurfaceElevation-InlineButton e1qrnbvu0"
+      >
+        Inline Button can be long
+      </button>
+      <button
+        class="css-ak8ya3-SecondaryButton-SurfaceElevation e1dg5x0l0"
+      >
+        Sec Btn
+      </button>
+      <button
+        class="css-13o0t0v-TertiaryButton-SurfaceElevation-InlineButton-SelectableInlineButton-SelectableInlineButton e1zmsnr0"
+      >
+        Selected
+      </button>
+      <button
+        class="css-1onp49w-SmallRoundButton e1d9564b0"
+      >
+        +
+      </button>
+      <button
+        class="css-4i4kxd-SubmitButton epz85c30"
+      >
+        Submit
+      </button>
+      <button
+        class="css-1m9v92z-TertiaryButton-SurfaceElevation eq3odzy0"
+      >
+        3rd Btn
+      </button>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

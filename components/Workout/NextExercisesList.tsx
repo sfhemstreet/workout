@@ -14,10 +14,10 @@ type NextExercisesListProps = {
 
 /**
  * NextExerciseList
- * 
- * Displays list of exercises in workout, 
+ *
+ * Displays list of exercises in workout,
  * highlight's of the current exercise and crosses out completed exercises.
- * 
+ *
  * @param exercises exercises in workout
  * @param currentExerciseId current exercise's id
  * @param isStarted workouts running status
@@ -61,7 +61,12 @@ export const NextExercisesList = ({
   // When the currentExerciseId changes,
   // scroll the list to show the item.
   useEffect(() => {
-    if (listRef.current && itemRef.current) {
+    if (
+      listRef.current &&
+      itemRef.current &&
+      listRef.current.scrollTo &&
+      itemRef.current.offsetTop
+    ) {
       listRef.current.scrollTo({
         top: itemRef.current.offsetTop,
         behavior: "smooth",
