@@ -1,8 +1,6 @@
 import { useTheme } from "@emotion/react";
 import { render } from "../test-utils/test-util";
 
-export {};
-
 test("AppThemeProvider provides themeType to children", () => {
 
   const ReturnsThemeType = () => {
@@ -11,7 +9,6 @@ test("AppThemeProvider provides themeType to children", () => {
   }
 
   const themeComponent = render(<ReturnsThemeType />)
-
   const input = themeComponent.getByTitle("1") as HTMLInputElement;
 
   // Default theme is 'DARK' in testing env

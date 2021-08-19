@@ -13,9 +13,9 @@ type SignInModalProps = {
 
 /**
  * SigninModal
- * 
- * Mounts / Unmounts the SignInContainer in a modal 
- * 
+ *
+ * Mounts / Unmounts the SignInContainer in a modal
+ *
  * @param isShowing controls mounting of component, when `true` modal is mounted to DOM and fades in
  * @param toggleIsShowing function to toggle isShowing on / off
  * @param isRegistering when `true` the modal renders the register inputs. Default is the signin inputs.
@@ -41,7 +41,13 @@ export const SignInModal = ({
 );
 
 const Container = styled.div`
-  width: min-content;
-  height: min-content;
-  overflow-y: scroll;
+  width: 100%;
+  max-width: 500px;
+  height: fit-content;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin: 40px 20px;
 `;

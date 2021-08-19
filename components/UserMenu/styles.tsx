@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { SecondaryButton } from "../Buttons";
 
 export const Container = styled.section<{ hasBackground?: boolean }>`
   width: 100%;
@@ -75,9 +76,9 @@ export const AvatarRow = styled.div<{ isSideBar?: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-bottom: ${p => p.isSideBar ? "1rem" : "0px"};
+  padding-bottom: ${(p) => (p.isSideBar ? "1rem" : "0px")};
 
-  @media ${p => p.theme.media.laptopM} {
+  @media ${(p) => p.theme.media.laptopM} {
     padding-bottom: 1rem;
   }
 `;
@@ -91,7 +92,15 @@ export const Menu = styled.div<{ isViewable?: boolean }>`
   justify-content: flex-start;
   align-items: center;
 
+  padding-top: 20px;
+
   @media ${(p) => p.theme.media.laptopM} {
     display: flex;
   }
+`;
+
+export const SignInButton = styled(SecondaryButton)<{
+  margin: "top" | "bottom";
+}>`
+  ${(p) => (p.margin === "top" ? "margin-top: 25px;" : "margin-bottom: 20px;")};
 `;

@@ -6,13 +6,13 @@ Object {
   "baseElement": <body>
     <div>
       <section
-        class="css-874msf-Container ez6gvys3"
+        class="css-874msf-Container ez6gvys4"
       >
         <div
-          class="css-sli15m-AvatarRow ez6gvys1"
+          class="css-sli15m-AvatarRow ez6gvys2"
         >
           <div
-            class="css-xj1fe7-Name ez6gvys2"
+            class="css-xj1fe7-Name ez6gvys3"
           >
             <p
               class="css-1aqmf7z-P-TextMixin elrci8c0"
@@ -41,10 +41,10 @@ Object {
           </button>
         </div>
         <div
-          class="css-1gyvqp1-Menu ez6gvys0"
+          class="css-elxmfa-Menu ez6gvys1"
         >
           <button
-            class="css-ak8ya3-SecondaryButton-SurfaceElevation e1dg5x0l0"
+            class="css-1tfvr6f-SecondaryButton-SurfaceElevation-SignInButton ez6gvys0"
           >
             Sign In
           </button>
@@ -60,6 +60,11 @@ Object {
             </span>
              
           </p>
+          <span
+            class="css-dlk94y-LowEmpSpan-TextMixin ebud7590"
+          >
+            Settings
+          </span>
           <div
             class="css-bqgpbt-Container epl5quv1"
           >
@@ -145,19 +150,24 @@ Object {
         </div>
       </section>
       <div
-        class="css-1evfo83-SideBarBackground-FadeInOutMixin egk50s71"
+        class="css-tko0x8-SideBarBackground-FadeInOutMixin egk50s72"
       >
         <aside
-          class="css-qlxd06-SideBarMenu-SurfaceElevation egk50s70"
+          class="css-1c3lrps-SideBarMenu-SurfaceElevation egk50s71"
         >
+          <button
+            class="css-wxxhug-OffScreenExitBtn egk50s70"
+          >
+            Close Side Bar
+          </button>
           <section
-            class="css-pybnp0-Container ez6gvys3"
+            class="css-pybnp0-Container ez6gvys4"
           >
             <div
-              class="css-sli15m-AvatarRow ez6gvys1"
+              class="css-sli15m-AvatarRow ez6gvys2"
             >
               <div
-                class="css-4djmm-Name ez6gvys2"
+                class="css-4djmm-Name ez6gvys3"
               >
                 <p
                   class="css-1aqmf7z-P-TextMixin elrci8c0"
@@ -186,10 +196,10 @@ Object {
               </button>
             </div>
             <div
-              class="css-13tkqfr-Menu ez6gvys0"
+              class="css-1h152f5-Menu ez6gvys1"
             >
               <button
-                class="css-ak8ya3-SecondaryButton-SurfaceElevation e1dg5x0l0"
+                class="css-1tfvr6f-SecondaryButton-SurfaceElevation-SignInButton ez6gvys0"
               >
                 Sign In
               </button>
@@ -205,6 +215,11 @@ Object {
                 </span>
                  
               </p>
+              <span
+                class="css-dlk94y-LowEmpSpan-TextMixin ebud7590"
+              >
+                Settings
+              </span>
               <div
                 class="css-bqgpbt-Container epl5quv1"
               >
@@ -295,13 +310,13 @@ Object {
   </body>,
   "container": <div>
     <section
-      class="css-874msf-Container ez6gvys3"
+      class="css-874msf-Container ez6gvys4"
     >
       <div
-        class="css-sli15m-AvatarRow ez6gvys1"
+        class="css-sli15m-AvatarRow ez6gvys2"
       >
         <div
-          class="css-xj1fe7-Name ez6gvys2"
+          class="css-xj1fe7-Name ez6gvys3"
         >
           <p
             class="css-1aqmf7z-P-TextMixin elrci8c0"
@@ -330,10 +345,10 @@ Object {
         </button>
       </div>
       <div
-        class="css-1gyvqp1-Menu ez6gvys0"
+        class="css-elxmfa-Menu ez6gvys1"
       >
         <button
-          class="css-ak8ya3-SecondaryButton-SurfaceElevation e1dg5x0l0"
+          class="css-1tfvr6f-SecondaryButton-SurfaceElevation-SignInButton ez6gvys0"
         >
           Sign In
         </button>
@@ -349,6 +364,11 @@ Object {
           </span>
            
         </p>
+        <span
+          class="css-dlk94y-LowEmpSpan-TextMixin ebud7590"
+        >
+          Settings
+        </span>
         <div
           class="css-bqgpbt-Container epl5quv1"
         >
@@ -434,19 +454,24 @@ Object {
       </div>
     </section>
     <div
-      class="css-1evfo83-SideBarBackground-FadeInOutMixin egk50s71"
+      class="css-tko0x8-SideBarBackground-FadeInOutMixin egk50s72"
     >
       <aside
-        class="css-qlxd06-SideBarMenu-SurfaceElevation egk50s70"
+        class="css-1c3lrps-SideBarMenu-SurfaceElevation egk50s71"
       >
+        <button
+          class="css-wxxhug-OffScreenExitBtn egk50s70"
+        >
+          Close Side Bar
+        </button>
         <section
-          class="css-pybnp0-Container ez6gvys3"
+          class="css-pybnp0-Container ez6gvys4"
         >
           <div
-            class="css-sli15m-AvatarRow ez6gvys1"
+            class="css-sli15m-AvatarRow ez6gvys2"
           >
             <div
-              class="css-4djmm-Name ez6gvys2"
+              class="css-4djmm-Name ez6gvys3"
             >
               <p
                 class="css-1aqmf7z-P-TextMixin elrci8c0"
@@ -475,10 +500,10 @@ Object {
             </button>
           </div>
           <div
-            class="css-13tkqfr-Menu ez6gvys0"
+            class="css-1h152f5-Menu ez6gvys1"
           >
             <button
-              class="css-ak8ya3-SecondaryButton-SurfaceElevation e1dg5x0l0"
+              class="css-1tfvr6f-SecondaryButton-SurfaceElevation-SignInButton ez6gvys0"
             >
               Sign In
             </button>
@@ -494,6 +519,11 @@ Object {
               </span>
                
             </p>
+            <span
+              class="css-dlk94y-LowEmpSpan-TextMixin ebud7590"
+            >
+              Settings
+            </span>
             <div
               class="css-bqgpbt-Container epl5quv1"
             >

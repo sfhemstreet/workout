@@ -30,6 +30,12 @@ test("AccountSettings renders authorized user inputs", () => {
     />
   );
 
+  const usernameInput = accountSettings.getByLabelText("Username") as HTMLInputElement;
+  const avatarInput = accountSettings.getByLabelText("Avatar URL") as HTMLInputElement;
+
+  expect(usernameInput.disabled).toBeFalsy();
+  expect(avatarInput.disabled).toBeFalsy();
+
   expect(accountSettings).toMatchSnapshot();
 });
 
@@ -61,6 +67,12 @@ test("AccountSettings disables inputs for non-authorized user", () => {
       onDeleteAccount={() => {}}
     />
   );
+
+  const usernameInput = accountSettings.getByLabelText("Username") as HTMLInputElement;
+  const avatarInput = accountSettings.getByLabelText("Avatar URL") as HTMLInputElement;
+
+  expect(usernameInput.disabled).toBeTruthy();
+  expect(avatarInput.disabled).toBeTruthy();
 
   expect(accountSettings).toMatchSnapshot();
 });

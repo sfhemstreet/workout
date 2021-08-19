@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
-import React from "react";
+import React, { useRef } from "react";
 import { Transition, TransitionStatus } from "react-transition-group";
+import { useTrapFocus } from "../hooks/useTrapFocus";
 
 import { SurfaceElevation } from "../styles/SurfaceElevation";
 import { FadeInOutMixin } from "./FadeInOut";
@@ -15,45 +16,58 @@ type SideBarProps = {
 
 /**
  * SideBar
- * 
+ *
  * Mounts children when open, unmounts when closed
- * 
+ *
  * @param isOpen determines if sidebar is open or closed
  * @param closeSideBar function to close sidebar
- * @param side determines side of screen sidebar opens on, 'left' or 'right' 
+ * @param side determines side of screen sidebar opens on, 'left' or 'right'
  */
 export const SideBar: React.FC<SideBarProps> = ({
   isOpen,
   side = "left",
   closeSideBar,
   children,
-}) => (
-  <Transition
-    in={isOpen}
-    timeout={{
-      enter: 0,
-      exit: 400,
-    }}
-    mountOnEnter
-    unmountOnExit
-  >
-    {(transitionStatus) => (
-      <SideBarBackground
-        side={side}
-        transitionStatus={transitionStatus}
-        onClick={closeSideBar}
-      >
-        <SideBarMenu
+}) => {
+  const ref = useRef<HTMLElement>(null);
+  useTrapFocus(ref);
+
+  return (
+    <Transition
+      in={isOpen}
+      timeout={{
+        enter: 0,
+        exit: 400,
+      }}
+      mountOnEnter
+      unmountOnExit
+    >
+      {(transitionStatus) => (
+        <SideBarBackground
           side={side}
           transitionStatus={transitionStatus}
-          onClick={(e) => e.stopPropagation()}
+          onClick={closeSideBar}
+          onKeyDown={(e) => e.key === "Enter" && closeSideBar()}
         >
-          {children}
-        </SideBarMenu>
-      </SideBarBackground>
-    )}
-  </Transition>
-);
+          <SideBarMenu
+            side={side}
+            transitionStatus={transitionStatus}
+            onClick={(e) => e.stopPropagation()}
+            ref={ref}
+          >
+            <OffScreenExitBtn
+              onClick={closeSideBar}
+              onKeyDown={(e) => e.key === "Enter" && closeSideBar()}
+            >
+              Close Side Bar
+            </OffScreenExitBtn>
+            {children}
+          </SideBarMenu>
+        </SideBarBackground>
+      )}
+    </Transition>
+  );
+};
 
 const SideBarBackground = styled.div<{
   side: Side;
@@ -79,14 +93,10 @@ const SideBarBackground = styled.div<{
 
   ${(p) => FadeInOutMixin(p.transitionStatus)};
 
-  padding: 2px;
+  padding: 0px;
   margin: 0px;
-  
-  border-radius: 5px;
 
   @media ${(p) => p.theme.media.laptop} {
-    padding: 10px;
-    border-radius: 10px;
   }
 
   @supports not (backdrop-filter: blur(2px)) {
@@ -102,6 +112,9 @@ const SideBarMenu = styled.aside<{
   grid-row: 1;
 
   height: 100%;
+  border-radius: 5px 0px 0px 5px;
+
+  padding-top: 10px;
 
   ${(props) => SurfaceElevation(props.theme.name, 2, true)};
 
@@ -110,4 +123,16 @@ const SideBarMenu = styled.aside<{
       ? `translateX(0px)`
       : `translateX(${p.side === "left" ? "-" : ""}250px)`};
   transition: ${(p) => p.theme.transitions.normal};
+`;
+
+export const OffScreenExitBtn = styled.button`
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+  padding: 0;
+  margin: -1px;
 `;

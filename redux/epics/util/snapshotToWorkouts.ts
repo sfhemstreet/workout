@@ -17,7 +17,5 @@ export const snapshotsToWorkouts = () =>
         snapshot: firebase.firestore.QuerySnapshot<firebase.firestore.DocumentData>
       ) => snapshot.docs.map((doc) => doc.data())
     ),
-    tap((w) => console.log("before", w)),
     fixWorkoutDates(),
-    tap((w) => console.log("after", w))
   );

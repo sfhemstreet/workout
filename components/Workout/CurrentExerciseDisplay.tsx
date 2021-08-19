@@ -87,11 +87,12 @@ export const CurrentExerciseDisplay = ({
         isPaused={isPaused}
         currentTime={currentTime}
         duration={duration}
+        repetitions={repetitions}
       />
 
-      <FadeInOut isShowing={repetitions !== 0} timeout={{ exit: 0 }}>
+      {/* <FadeInOut isShowing={repetitions !== 0} timeout={{ exit: 0 }}>
         <P textAlign="center">Reps: {repetitions}</P>
-      </FadeInOut>
+      </FadeInOut> */}
 
       <SpaceMaker shrink={repetitions !== 0}>
         <FadeInOut

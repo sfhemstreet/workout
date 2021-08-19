@@ -8,28 +8,31 @@ import {
 } from "../../styles/keyframes";
 import { SurfaceElevation } from "../../styles/SurfaceElevation";
 import { getExerciseDurationDisplayString } from "../../utils/getExerciseDurationDisplayString";
-import { H1, H2, P } from "../Txt";
+import { H1, H2, H3, LowEmpSpan, NumberSpan, P } from "../Txt";
 
 type CounterProps = {
   duration: number;
+  repetitions: number;
   currentTime: number;
   isPaused: boolean;
   shouldReset: boolean;
 };
 
 /**
- * Counter 
- * 
+ * Counter
+ *
  * Displays the time remaining in an exercise.
- * 
+ *
  * @param currentTime current time remaining in exercise
  * @param duration total duration of exercise
+ * @param repetitions number of repetitions for exercise
  * @param isPaused if exercise is paused set to `true`
- * @param shouldReset if counter needs to reset set to `true` 
+ * @param shouldReset if counter needs to reset set to `true`
  */
 export const Counter = ({
   currentTime,
   duration,
+  repetitions,
   isPaused,
   shouldReset,
 }: CounterProps) => (
@@ -38,13 +41,19 @@ export const Counter = ({
       <H1>PAUSED</H1>
     </Paused>
 
+    {repetitions > 0 && (
+      <Reps>
+        Reps: <NumberSpan>{repetitions}</NumberSpan>
+      </Reps>
+    )}
+
     {duration > 0 ? (
       <Time increaseSize={currentTime < 60}>
         {getExerciseDurationDisplayString(currentTime)}
       </Time>
     ) : (
       <>
-        <H2 textAlign="center">No Time Limit</H2>
+        <H3 textAlign="center">No Time Limit</H3>
         <P>Hit 'Next' when completed</P>
       </>
     )}
@@ -142,6 +151,11 @@ const Time = styled.h1<{ increaseSize: boolean }>`
   @media ${(p) => p.theme.media.desktop} {
     font-size: ${(p) => (p.increaseSize ? "25.2rem" : "14.2rem")};
   }
+`;
+
+const Reps = styled(H2)`
+  position: absolute;
+  bottom: 60px;
 `;
 
 const SVG = styled.svg`

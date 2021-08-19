@@ -2,6 +2,7 @@ import next from "next";
 import React, { ReactElement, useEffect } from "react";
 import { render, RenderOptions } from "@testing-library/react";
 import { Provider as ReduxProvider } from "react-redux";
+
 import { initializeStore } from "../../redux";
 import { userInit } from "../../redux/ducks/user";
 import { LayoutContainer } from "../../containers/LayoutContainer";

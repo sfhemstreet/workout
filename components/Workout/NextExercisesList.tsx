@@ -93,6 +93,7 @@ const Container = styled.div`
   padding: 0px 5px 5px 5px;
   position: relative;
   z-index: -1;
+  margin: 20px 10px;
 `;
 
 const List = styled.ol<{ showAll: boolean }>`

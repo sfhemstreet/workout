@@ -43,7 +43,7 @@ export function useForceButton({
     const mouseUp$ = merge(
       fromEvent(document, "mouseup"),
       fromEvent(document, "touchend"),
-      fromEvent<KeyboardEvent>(ref.current, "keyup").pipe(
+      fromEvent<KeyboardEvent>(document, "keyup").pipe(
         filter((e) => e.key === "Enter")
       )
     );

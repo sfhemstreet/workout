@@ -17,12 +17,13 @@ const clientCredentials = {
 if (!firebase.apps.length) {
   firebase.initializeApp(clientCredentials);
 
-  if (process.env.NODE_ENV === "development") {
+  if (process.env.NODE_ENV === "development" || process.env.NODE_ENV === "test") {
     // @ts-ignore the disableWarnings option is not typed.
     firebase.auth().useEmulator("http://localhost:9099", { disableWarnings: true });
     firebase.firestore().useEmulator("localhost", 8080);
     firebase.storage().useEmulator("localhost", 9199);
-  } 
+    console.log("Firebase is using emulators");
+  }
 
   if (
     typeof window !== "undefined" &&

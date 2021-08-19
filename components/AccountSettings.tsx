@@ -226,9 +226,9 @@ export const AccountSettings = ({
 
 const Container = styled.article<{ transitionStatus: TransitionStatus }>`
   position: relative;
-  max-width: 300px;
-  width: 100%;
+  max-width: 100%;
   height: fit-content;
+  margin: 40px 10px; 
 
   border-radius: 20px;
   ${(p) => SurfaceElevation(p.theme.name, 3)};
@@ -237,13 +237,13 @@ const Container = styled.article<{ transitionStatus: TransitionStatus }>`
 
   ${(p) => FadeInOutMixin(p.transitionStatus)};
 
-  @media ${(p) => p.theme.media.tablet} {
-    max-width: 500px;
-  }
-
   button {
     margin-top: 0.25rem;
     margin-bottom: 1rem;
+  }
+
+  @media ${p => p.theme.media.tablet} {
+    max-width: 500px;
   }
 `;
 

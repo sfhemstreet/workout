@@ -6,11 +6,8 @@ import { TertiaryButton, InlineButton } from "../Buttons";
 
 export const Container = styled.form<{ transitionStatus: TransitionStatus }>`
   position: relative;
-  max-width: 500px;
-  min-width: 300px;
-  //max-height: 800px;
+  min-width: 100%;
   height: fit-content;
-  width: 100%;
   padding: 20px;
 
   border-radius: 9px;
@@ -30,6 +27,7 @@ export const Container = styled.form<{ transitionStatus: TransitionStatus }>`
 
   @media ${p => p.theme.media.tablet} {
     min-width: 500px;
+    max-width: 500px;
   }
 `;
 

@@ -237,6 +237,7 @@ const SmallLinkBtn = styled(LinkBtn)`
 `;
 
 const YourWorkouts = styled(H5)`
+  font-size: 1rem;
   color: ${(p) => p.theme.colors.onBackgroundLowEmp};
   padding-bottom: 5px;
 `;

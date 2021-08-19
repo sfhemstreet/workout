@@ -1,4 +1,4 @@
-import firebase from "firebase";
+import { firebase } from "../firebase";
 import { useEffect } from "react";
 import { from, of, Subject } from "rxjs";
 import { debounceTime, switchMap, map, catchError } from "rxjs/operators";

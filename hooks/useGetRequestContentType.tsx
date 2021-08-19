@@ -26,7 +26,7 @@ export function useGetRequestContentType(
         filter((url) => url.trim().length > 0),
         switchMap((url) =>
           ajax(url).pipe(
-            map((response) =>  response.xhr.getResponseHeader("Content-Type")),
+            map((response) => response.xhr.getResponseHeader("Content-Type")),
             map(contentType => func(contentType ?? "FAILED")),
             catchError((err) => {
               console.log("Failed to get Content-Type", err);

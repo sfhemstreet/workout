@@ -74,7 +74,7 @@ export const tooltip = (themeType: ThemeType) => css`
       ? darkColors.background
       : lightColors.background};
     content: attr(aria-label);
-    font-size: var(--microtip-font-size, 13px);
+    font-size: var(--microtip-font-size, 0.8rem);
     font-weight: var(--microtip-font-weight, normal);
     text-transform: var(--microtip-text-transform, none);
     padding: 0.5em 1em;

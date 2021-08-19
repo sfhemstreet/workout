@@ -7,7 +7,7 @@ Object {
     <div>
       <form
         aria-label="signin modal"
-        class="css-qodaci-Container-SurfaceElevation eu4qea98"
+        class="css-ga55b2-Container-SurfaceElevation eu4qea98"
       >
         <button
           aria-label="close signin modal"
@@ -112,7 +112,7 @@ Object {
   "container": <div>
     <form
       aria-label="signin modal"
-      class="css-qodaci-Container-SurfaceElevation eu4qea98"
+      class="css-ga55b2-Container-SurfaceElevation eu4qea98"
     >
       <button
         aria-label="close signin modal"
@@ -273,7 +273,7 @@ Object {
   "baseElement": <body>
     <div>
       <form
-        class="css-qodaci-Container-SurfaceElevation eu4qea98"
+        class="css-ga55b2-Container-SurfaceElevation eu4qea98"
       >
         <h1
           class="css-1891q7e-H1-TextMixin e1ez90bh0"
@@ -325,7 +325,7 @@ Object {
   </body>,
   "container": <div>
     <form
-      class="css-qodaci-Container-SurfaceElevation eu4qea98"
+      class="css-ga55b2-Container-SurfaceElevation eu4qea98"
     >
       <h1
         class="css-1891q7e-H1-TextMixin e1ez90bh0"
@@ -508,7 +508,7 @@ Object {
     <div>
       <form
         aria-label="register modal"
-        class="css-qodaci-Container-SurfaceElevation eu4qea98"
+        class="css-ga55b2-Container-SurfaceElevation eu4qea98"
       >
         <button
           aria-label="Close register modal"
@@ -965,7 +965,7 @@ Object {
   "container": <div>
     <form
       aria-label="register modal"
-      class="css-qodaci-Container-SurfaceElevation eu4qea98"
+      class="css-ga55b2-Container-SurfaceElevation eu4qea98"
     >
       <button
         aria-label="Close register modal"

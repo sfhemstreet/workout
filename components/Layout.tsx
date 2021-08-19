@@ -125,7 +125,7 @@ const Container = styled.div`
   gap: 10px 10px;
 
   @media ${(p) => p.theme.media.laptop} {
-    grid-template-columns: 250px 1fr;
+    grid-template-columns: 200px 1fr;
     gap: 20px 20px;
   }
 

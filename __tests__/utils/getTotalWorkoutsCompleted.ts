@@ -9,4 +9,5 @@ test("getTotalWorkoutsCompleted", () => {
   ]
 
   expect(getTotalWorkoutsCompleted(completedWorkouts)).toBe(3);
+  expect(getTotalWorkoutsCompleted([])).toBe(0);
 })

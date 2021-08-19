@@ -20,11 +20,15 @@ export function useTrapFocus(ref: React.RefObject<HTMLElement>) {
     if (e.key !== "Tab" || !ref.current || typeof document === "undefined")
       return;
 
+    console.log("1");
+
     const focusableChildren = ref.current.querySelectorAll(
       "a[href], button:not([disabled]), textarea, input, select"
     );
 
     if (focusableChildren.length === 0) return;
+
+    console.log("2");
 
     const activeElement = document.activeElement;
 
@@ -53,10 +57,12 @@ export function useTrapFocus(ref: React.RefObject<HTMLElement>) {
     focusableChildren.forEach((element) => {
       if (element === activeElement) {
         isChild = true;
+        console.log("is child");
       }
     });
 
     if (!isChild) {
+      console.log("NOT child");
       firstElement.focus();
       return e.preventDefault();
     }
@@ -69,5 +75,5 @@ export function useTrapFocus(ref: React.RefObject<HTMLElement>) {
 
     return () =>
       document.removeEventListener("keydown", handleTrapFocus, false);
-  }, [ref]);
+  }, [ref, typeof document === "undefined"]);
 }
