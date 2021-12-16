@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import styled from "@emotion/styled";
 import isEqual from "lodash.isequal";
 
-import { H2, H3, NumberSpan, P } from "../components/Txt";
+import { H2, H3, P } from "../components/Txt";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { LoadingShimmer } from "../components/LoadingShimmer";
 import { InlineButton } from "../components/Buttons/InlineButton";
@@ -13,6 +13,8 @@ import { useBrowseWorkouts } from "../hooks/useBrowseWorkouts";
 import { SwitchTransition, Transition } from "react-transition-group";
 import { WorkoutPreviewLoadingShimmers } from "../components/WorkoutPreviewLoadingShimmers";
 import { SurfaceElevation } from "../styles/SurfaceElevation";
+import { changeActiveWorkout } from "../redux/ducks/activeWorkout";
+import { Workout } from "../types";
 
 /**
  * Home Page
@@ -32,7 +34,10 @@ export default function Home() {
   const { isLoading: latestWorkoutsLoading, workouts: latestWorkouts } =
     useBrowseWorkouts({ sort: "LATEST", limit: 5 });
 
-  const goToActiveWorkoutPage = () => router.push("/workout");
+  const goToWorkout = (workout: Workout) => {
+    dispatch(changeActiveWorkout(workout));
+    router.push({ pathname: "/workout", query: { id: workout.id } });
+  }
 
   useEffect(() => {
     setTimeout(() => router.prefetch("/workout"), 500);
@@ -78,6 +83,7 @@ export default function Home() {
                     <WorkoutPreview
                       key={`browse-${workout.id}`}
                       workout={workout}
+                      onClick={() => goToWorkout(workout)}
                     />
                   ))
                 )
@@ -106,6 +112,7 @@ export default function Home() {
                     <WorkoutPreview
                       key={`browse-${workout.id}`}
                       workout={workout}
+                      onClick={() => goToWorkout(workout)}
                     />
                   ))
                 )
@@ -115,23 +122,6 @@ export default function Home() {
         </WorkoutsContainer>
       </LatestWorkoutsSection>
 
-      {/* {activeWorkout.id !== "" && (
-        <ActiveWorkoutSection>
-          <H3>
-            Your current workout: <NumberSpan>{activeWorkout.name}</NumberSpan>
-          </H3>
-          <P>
-            <InlineButton onClick={goToActiveWorkoutPage}>
-              {activeWorkout.isStarted
-                ? `Click here to continue the ${activeWorkout.name} workout.`
-                : activeWorkout.isCompleted
-                ? `Congrats on completing ${activeWorkout.name}! Click here to do it again.`
-                : `Click here to start the ${activeWorkout.name} workout.`}
-            </InlineButton>
-          </P>
-        </ActiveWorkoutSection>
-      )} */}
-
       {workouts.list.length > 0 && (
         <SavedWorkoutsSection>
           <H3>Saved Workouts</H3>
@@ -139,7 +129,7 @@ export default function Home() {
             <WorkoutPreview
               key={workout.id}
               workout={workout}
-              onClick={() => {}}
+              onClick={() => goToWorkout(workout)}
             />
           ))}
         </SavedWorkoutsSection>

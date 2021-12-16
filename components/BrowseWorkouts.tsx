@@ -13,7 +13,6 @@ import { SurfaceElevation } from "../styles/SurfaceElevation";
 import { FlexSetting } from "../types/FlexSetting";
 import { SecondaryButton } from "./Buttons";
 import { DifficultySelector } from "./DifficultySelector";
-import { RatingsSelector } from "./RatingsSelector";
 import { Toggler } from "./Toggler";
 import { H3, LowEmpSpan } from "./Txt";
 import { WorkoutPreview } from "./WorkoutPreview";
@@ -72,7 +71,6 @@ export const BrowseWorkouts = React.memo(() => {
               isLoading ? (
                 <WorkoutPreviewLoadingShimmers
                   transitionStatus={transitionStatus}
-                  numShimmers={workouts.length}
                 />
               ) : (
                 workouts.map((workout) => (
