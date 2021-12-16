@@ -2,9 +2,12 @@ import { RefObject, useEffect } from "react";
 import { fromEvent, merge, timer } from "rxjs";
 import { takeUntil, switchMap, tap, takeWhile, filter } from "rxjs/operators";
 
+export const USE_FORCE_BUTTON_WAIT_TIME = 250;
+export const USE_FORCE_BUTTON_FREQ_TIME = 100;
+
 type ForceButtonProps = {
   ref: RefObject<HTMLButtonElement>;
-  func: (event: Event) => void;
+  func: (event: Event | KeyboardEvent) => void;
   stopFunc: (event: Event) => boolean;
   wait?: number;
   frequency?: number;
@@ -26,8 +29,8 @@ export function useForceButton({
   ref,
   func,
   stopFunc,
-  wait = 250,
-  frequency = 100,
+  wait = USE_FORCE_BUTTON_WAIT_TIME,
+  frequency = USE_FORCE_BUTTON_FREQ_TIME,
 }: ForceButtonProps) {
   useEffect(() => {
     if (!ref.current || typeof document === "undefined") return;

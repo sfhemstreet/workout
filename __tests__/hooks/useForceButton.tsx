@@ -1,6 +1,22 @@
 import React, { useRef } from "react";
+
 import { useForceButton } from "../../hooks/useForceButton";
-import { fireEvent, render } from "../test-utils/test-util";
+import {
+  fireEvent,
+  render,
+  act,
+  fakeSchedulers,
+  userEvent,
+} from "../test-utils/render";
+import { getForceButtonWaitTime } from "../test-utils/helpers";
+
+beforeEach(() => {
+  jest.useFakeTimers();
+});
+
+afterEach(() => {
+  jest.useRealTimers();
+});
 
 test("useForceButton calls func one time onClick", () => {
   const func = jest.fn();
@@ -10,7 +26,7 @@ test("useForceButton calls func one time onClick", () => {
     useForceButton({
       ref,
       func,
-      stopFunc: () => false,
+      stopFunc: () => true,
     });
 
     return <button ref={ref}>Click Me</button>;
@@ -19,144 +35,131 @@ test("useForceButton calls func one time onClick", () => {
   const rendered = render(<Component />);
   const button = rendered.getByText("Click Me") as HTMLButtonElement;
 
-  fireEvent.click(button);
+  userEvent.click(button);
 
-  setTimeout(() => {
-    expect(func).toBeCalledTimes(1);
-  }, 100)
+  expect(func).toBeCalledTimes(1);
 });
 
-test("useForceButton calls func one time onKeyDown 'Enter'", () => {
-  const func = jest.fn();
+test(
+  "useForceButton calls func 3 times using default values for wait and frequency",
+  fakeSchedulers((advance) => {
+    const func = jest.fn();
 
-  const Component = () => {
-    const ref = useRef<HTMLButtonElement>(null);
-    useForceButton({
-      ref,
-      func,
-      stopFunc: () => false,
-    });
+    const Component = () => {
+      const ref = useRef<HTMLButtonElement>(null);
+      useForceButton({
+        ref,
+        func,
+        stopFunc: () => true,
+      });
 
-    return <button ref={ref}>Click Me</button>;
-  };
+      return <button ref={ref}>Click Me</button>;
+    };
 
-  const rendered = render(<Component />);
-  const button = rendered.getByText("Click Me") as HTMLButtonElement;
+    const rendered = render(<Component />);
+    const button = rendered.getByText("Click Me") as HTMLButtonElement;
 
-  fireEvent.keyDown(button, { key: "Enter" });
+    fireEvent.mouseDown(button);
 
-  setTimeout(() => {
-    expect(func).toBeCalledTimes(1);
-  }, 100)
-});
+    advance(getForceButtonWaitTime(3));
 
-test("useForceButton calls func 3 times using default values for wait and frequency", () => {
-  const func = jest.fn();
-
-  const Component = () => {
-    const ref = useRef<HTMLButtonElement>(null);
-    useForceButton({
-      ref,
-      func,
-      stopFunc: () => false,
-    });
-
-    return <button ref={ref}>Click Me</button>;
-  };
-
-  const rendered = render(<Component />);
-  const button = rendered.getByText("Click Me") as HTMLButtonElement;
-
-   // 1st click occurs -> initial wait of 250ms -> 2nd click occurs -> waits 100ms -> 3rd click occurs -> waits 100ms -> nth click occurs etc
-  // So for 3 calls to func we need to hold mousedown for 350ms
-  fireEvent.mouseDown(button);
-  setTimeout(() => {
     fireEvent.mouseUp(button);
     expect(func).toBeCalledTimes(3);
-  }, 350);
-});
+  })
+);
 
-test("useForceButton calls func 3 times then stops because of stopFunc", () => {
-  let x = 0;
-  const func = jest.fn(() => x = x + 1);
-  const stopFunc = jest.fn(() => x > 3);
+test(
+  "useForceButton calls func 3 times then stops because of stopFunc",
+  fakeSchedulers((advance) => {
+    let x = 0;
+    const func = jest.fn();
 
-  const Component = () => {
-    const ref = useRef<HTMLButtonElement>(null);
-    useForceButton({
-      ref,
-      func,
-      stopFunc,
-      wait: 1,
-      frequency: 1,
-    });
+    const Component = () => {
+      const ref = useRef<HTMLButtonElement>(null);
+      useForceButton({
+        ref,
+        func: () => {
+          x = x + 1;
+          func()
+        },
+        stopFunc: () => x < 3,
+        wait: 1,
+        frequency: 1,
+      });
 
-    return <button ref={ref}>Click Me</button>;
-  };
+      return <button ref={ref}>Click Me</button>;
+    };
 
-  const rendered = render(<Component />);
-  const button = rendered.getByText("Click Me") as HTMLButtonElement;
+    const rendered = render(<Component />);
+    const button = rendered.getByText("Click Me") as HTMLButtonElement;
 
-  // Wait 1000ms, which is over the amount of time needed to call func 3 times.
-  fireEvent.mouseDown(button);
-  setTimeout(() => {
+    // Wait 1000ms, which is over the amount of time needed to call func 3 times.
+    fireEvent.mouseDown(button);
+
+    advance(10000);
+
     fireEvent.mouseUp(button);
+
     expect(func).toBeCalledTimes(3);
-  }, 1000);
-});
+  })
+);
 
-test("useForceButton never calls func because of stopFunc", () => {
-  const func = jest.fn();
-  const stopFunc = jest.fn(() => true);
+test(
+  "useForceButton never calls func because of stopFunc",
+  fakeSchedulers((advance) => {
+    const func = jest.fn();
+    const stopFunc = jest.fn(() => true);
 
-  const Component = () => {
-    const ref = useRef<HTMLButtonElement>(null);
-    useForceButton({
-      ref,
-      func,
-      stopFunc,
-      wait: 1,
-      frequency: 1
-    });
+    const Component = () => {
+      const ref = useRef<HTMLButtonElement>(null);
+      useForceButton({
+        ref,
+        func,
+        stopFunc: () => false,
+        wait: 1,
+        frequency: 1,
+      });
 
-    return <button ref={ref}>Click Me</button>;
-  };
+      return <button ref={ref}>Click Me</button>;
+    };
 
-  const rendered = render(<Component />);
-  const button = rendered.getByText("Click Me") as HTMLButtonElement;
+    const rendered = render(<Component />);
+    const button = rendered.getByText("Click Me") as HTMLButtonElement;
 
-  // Wait 1000ms, which is over the amount of time needed to call func a bunch of times.
-  fireEvent.mouseDown(button);
-  setTimeout(() => {
+    // Wait 1000ms, which is over the amount of time needed to call func a bunch of times.
+    fireEvent.mouseDown(button);
+    advance(1000);
     fireEvent.mouseUp(button);
     expect(func).toBeCalledTimes(0);
-  }, 1000);
-});
+  })
+);
 
-test("useForceButton calls func 5 times using keyboard 'Enter' key", () => {
-  const func = jest.fn();
+test(
+  "useForceButton calls func 5 times using keyboard 'Enter' key",
+  fakeSchedulers((advance) => {
+    const func = jest.fn();
 
-  const Component = () => {
-    const ref = useRef<HTMLButtonElement>(null);
-    useForceButton({
-      ref,
-      func,
-      stopFunc: () => false,
-      wait: 100,
-      frequency: 50
-    });
+    const Component = () => {
+      const ref = useRef<HTMLButtonElement>(null);
+      useForceButton({
+        ref,
+        func,
+        stopFunc: () => true,
+        wait: 100,
+        frequency: 50,
+      });
 
-    return <button ref={ref}>Click Me</button>;
-  };
+      return <button ref={ref}>Click Me</button>;
+    };
 
-  const rendered = render(<Component />);
-  const button = rendered.getByText("Click Me") as HTMLButtonElement;
+    const rendered = render(<Component />);
+    const button = rendered.getByText("Click Me") as HTMLButtonElement;
 
-  // 1st call is right away -> wait 100ms -> 2nd call -> wait 50ms -> 3rd call -> wait 50ms -> etc 
-  // So 5 calls is 250ms
-  fireEvent.keyDown(button, { key: "Enter" });
-  setTimeout(() => {
+    fireEvent.keyDown(button, { key: "Enter" });
+
+    advance(getForceButtonWaitTime(5, { wait: 100, freq: 50 }));
+
     fireEvent.keyUp(button, { key: "Enter" });
     expect(func).toBeCalledTimes(5);
-  }, 250);
-});
+  })
+);

@@ -1,7 +1,7 @@
 import { from, of } from "rxjs";
 import { ajax } from "rxjs/ajax";
 import { catchError, map, mapTo, mergeMap } from "rxjs/operators";
-import { firebase } from "../../../firebase";
+import { firebase } from "../../../firebase/firebase";
 import { ThemeType, Workout } from "../../../types";
 import { CompletedWorkout } from "../../../types/CompletedWorkout";
 import { userRegisterFail } from "../../ducks/user";

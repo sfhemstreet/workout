@@ -1,7 +1,14 @@
-import { firebase } from "../firebase";
+import { firebase } from "../firebase/firebase";
 import { useEffect } from "react";
 import { from, of, Subject } from "rxjs";
-import { debounceTime, switchMap, map, catchError } from "rxjs/operators";
+import {
+  debounceTime,
+  switchMap,
+  map,
+  catchError,
+  filter,
+} from "rxjs/operators";
+import { USERNAME_LENGTH } from "../components/SignIn/constants";
 
 /**
  * useIsUsernameUnique
@@ -21,6 +28,7 @@ export function useIsUsernameUnique(
     const usernameSubscription$ = subject
       .pipe(
         debounceTime(400),
+        filter((username) => username.trim().length >= USERNAME_LENGTH.min),
         switchMap((username) =>
           from(
             firebase
@@ -35,7 +43,7 @@ export function useIsUsernameUnique(
               return of(false);
             })
           )
-        )
+        ),
       )
       .subscribe();
 

@@ -17,12 +17,24 @@ const clientCredentials = {
 if (!firebase.apps.length) {
   firebase.initializeApp(clientCredentials);
 
-  if (process.env.NODE_ENV === "development" || process.env.NODE_ENV === "test") {
-    // @ts-ignore the disableWarnings option is not typed.
-    firebase.auth().useEmulator("http://localhost:9099", { disableWarnings: true });
+  if (
+    process.env.NODE_ENV === "development" ||
+    process.env.NODE_ENV === "test"
+  ) {
+    firebase
+      .auth()
+      // @ts-ignore the disableWarnings option is not typed.
+      .useEmulator("http://localhost:9099", { disableWarnings: true });
     firebase.firestore().useEmulator("localhost", 8080);
     firebase.storage().useEmulator("localhost", 9199);
     console.log("Firebase is using emulators");
+
+    (async () => {
+      const fake = new (await import("./FakeDataGenerator")).FakeDataGenerator(
+        firebase.firestore()
+      );
+      await fake.generateFakeData();
+    })();
   }
 
   if (

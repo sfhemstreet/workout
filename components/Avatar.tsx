@@ -30,7 +30,10 @@ export const Avatar = ({ isLoading, src, onClick }: AvatarProps) => (
   <BtnContainer
     noHover={onClick === undefined}
     onClick={() => !isLoading && onClick && onClick()}
-    aria-label="User information"
+    //aria-label="User information"
+    aria-label="Account settings"
+    role="tooltip"
+    data-microtip-position="bottom-left"
   >
     <SwitchTransition mode="out-in">
       <Transition key={isLoading ? "true" : "false"} timeout={200}>
@@ -42,11 +45,11 @@ export const Avatar = ({ isLoading, src, onClick }: AvatarProps) => (
               </LoadingContainer>
             ) : (
               <Img
-                role="button"
+                //role="button"
                 status={status}
                 src={src}
                 alt="User Avatar"
-                title="Toggle user menu"
+                // title="Toggle user menu"
               />
             )}
           </>
@@ -59,7 +62,7 @@ export const Avatar = ({ isLoading, src, onClick }: AvatarProps) => (
 const BtnContainer = styled.button<{ noHover: boolean }>`
   padding: 0px;
   border: none;
-  overflow: hidden;
+  //overflow: hidden;
 
   ${(p) => SurfaceElevation(p.theme.name, 4)};
 

@@ -1,5 +1,5 @@
 import * as Btns from "../../components/Buttons";
-import { render } from "../test-utils/test-util";
+import { render } from "../test-utils/render";
 
 test("Buttons render properly", () => {
   const components = render(

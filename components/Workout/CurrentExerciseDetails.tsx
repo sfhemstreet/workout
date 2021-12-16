@@ -62,12 +62,14 @@ export const CurrentExerciseDetails = ({
           </NumberSpan>
         )}
       </P>
-      {duration !== 0 && (
+      {duration !== 0 && duration !== currentTime && (
         <>
-          <P>Time Remaining:</P>
-          <NumberSpan>
-            {getExerciseDurationDisplayString(currentTime, true)}
-          </NumberSpan>
+          <P>Time:</P>
+          <P>
+            <NumberSpan>
+              {getExerciseDurationDisplayString(currentTime, true)}
+            </NumberSpan>
+          </P>
         </>
       )}
     </DescriptionContainer>

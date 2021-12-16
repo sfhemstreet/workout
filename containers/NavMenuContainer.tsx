@@ -31,25 +31,21 @@ export const NavMenuContainer = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();
   const [isSideBarOpen, setIsSidebarOpen] = useState(false);
-  const [goToWorkoutId, setGoToWorkoutId] = useState("");
+  // Used to display modal that asks user if they really want to switch workouts
+  // before their current workout is finished.
+  const [confirmGoToWorkoutId, setConfirmGoToWorkoutId] = useState("");
 
   const handleToggleSideBar = () => setIsSidebarOpen(!isSideBarOpen);
 
   const goToWorkout = (workoutId: string) => {
-    const workout: Workout | undefined = navProps.workouts.list.find(({id}) => workoutId === id);
+    const workout: Workout | undefined = navProps.workouts.list.find(
+      ({ id }) => workoutId === id
+    );
 
     if (!workout) return;
 
-    // If user is currently in a workout ask them if they really wanna switch
-    if (navProps.activeWorkout.id !== "" && navProps.activeWorkout.isStarted) {
-      dispatch(pauseExercise());
-      setGoToWorkoutId(workoutId);
-      return;
-    }
-
     dispatch(changeActiveWorkout(workout));
-    router.push({ pathname: "/workout", query: { id: workout.id }});
-    if (isSideBarOpen) setIsSidebarOpen(false);
+    router.push({ pathname: "/workout", query: { id: workout.id } });
   };
 
   const pauseExerciseIfNeeded = () =>
@@ -61,22 +57,6 @@ export const NavMenuContainer = () => {
   const goToRoute = (route: string) => {
     pauseExerciseIfNeeded();
     router.push({ pathname: route });
-    if (isSideBarOpen) setIsSidebarOpen(false);
-  };
-
-  const confirmSwitchWorkout = () => {
-    const workoutId = goToWorkoutId;
-    setGoToWorkoutId("");
-
-    const workout: Workout | null = navProps.workouts.list.reduce(
-      (acc: Workout | null, curr) => (curr.id === workoutId ? curr : acc),
-      null
-    );
-
-    if (!workout) return;
-
-    dispatch(changeActiveWorkout(workout));
-    router.push("/workout");
     if (isSideBarOpen) setIsSidebarOpen(false);
   };
 
@@ -95,14 +75,8 @@ export const NavMenuContainer = () => {
           goToEdit: () => goToRoute("/edit"),
           goToExplore: () => goToRoute("/explore"),
           goToHistory: () => goToRoute("/history"),
+          goToMyWorkouts: () => goToRoute("/my-workouts"),
         }}
-      />
-
-      <SwitchWorkoutsAlert
-        isShowing={goToWorkoutId !== "" && navProps.activeWorkout.name !== ""}
-        onCancel={() => setGoToWorkoutId("")}
-        onConfirm={confirmSwitchWorkout}
-        workoutName={navProps.activeWorkout.name}
       />
     </>
   );

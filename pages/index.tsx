@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "@emotion/styled";
 import isEqual from "lodash.isequal";
 
@@ -9,10 +9,14 @@ import { InlineButton } from "../components/Buttons/InlineButton";
 import { useRouter } from "next/router";
 import { WorkoutPreview } from "../components/WorkoutPreview";
 import { openSignInModal } from "../redux/ducks/signInModal";
+import { useBrowseWorkouts } from "../hooks/useBrowseWorkouts";
+import { SwitchTransition, Transition } from "react-transition-group";
+import { WorkoutPreviewLoadingShimmers } from "../components/WorkoutPreviewLoadingShimmers";
+import { SurfaceElevation } from "../styles/SurfaceElevation";
 
 /**
  * Home Page
- * 
+ *
  * `/`
  */
 export default function Home() {
@@ -22,8 +26,17 @@ export default function Home() {
     ({ user, workouts, activeWorkout }) => ({ user, workouts, activeWorkout }),
     (left, right) => isEqual(left, right)
   );
+  const { isLoading: popularWorkoutsLoading, workouts: popularWorkouts } =
+    useBrowseWorkouts({ sort: "POPULAR", limit: 5 });
+
+  const { isLoading: latestWorkoutsLoading, workouts: latestWorkouts } =
+    useBrowseWorkouts({ sort: "LATEST", limit: 5 });
 
   const goToActiveWorkoutPage = () => router.push("/workout");
+
+  useEffect(() => {
+    setTimeout(() => router.prefetch("/workout"), 500);
+  }, []);
 
   if (user.isLoading) {
     return <LoadingShimmer />;
@@ -48,15 +61,61 @@ export default function Home() {
 
       <PopularWorkoutsSection>
         <H3>Popular Workouts</H3>
-        <P>To Do: Query Firebase for most popular workouts</P>
+        <WorkoutsContainer>
+          <SwitchTransition mode="out-in">
+            <Transition
+              key={popularWorkoutsLoading ? "loading" : "results"}
+              timeout={300}
+            >
+              {(transitionStatus) =>
+                popularWorkoutsLoading ? (
+                  <WorkoutPreviewLoadingShimmers
+                    transitionStatus={transitionStatus}
+                    numShimmers={5}
+                  />
+                ) : (
+                  popularWorkouts.map((workout) => (
+                    <WorkoutPreview
+                      key={`browse-${workout.id}`}
+                      workout={workout}
+                    />
+                  ))
+                )
+              }
+            </Transition>
+          </SwitchTransition>
+        </WorkoutsContainer>
       </PopularWorkoutsSection>
 
       <LatestWorkoutsSection>
         <H3>Latest Workouts</H3>
-        <P>To Do: Query Firebase for the latest created workouts</P>
+        <WorkoutsContainer>
+          <SwitchTransition mode="out-in">
+            <Transition
+              key={latestWorkoutsLoading ? "loading" : "results"}
+              timeout={300}
+            >
+              {(transitionStatus) =>
+                latestWorkoutsLoading ? (
+                  <WorkoutPreviewLoadingShimmers
+                    transitionStatus={transitionStatus}
+                    numShimmers={5}
+                  />
+                ) : (
+                  latestWorkouts.map((workout) => (
+                    <WorkoutPreview
+                      key={`browse-${workout.id}`}
+                      workout={workout}
+                    />
+                  ))
+                )
+              }
+            </Transition>
+          </SwitchTransition>
+        </WorkoutsContainer>
       </LatestWorkoutsSection>
 
-      {activeWorkout.id !== "" && (
+      {/* {activeWorkout.id !== "" && (
         <ActiveWorkoutSection>
           <H3>
             Your current workout: <NumberSpan>{activeWorkout.name}</NumberSpan>
@@ -71,7 +130,7 @@ export default function Home() {
             </InlineButton>
           </P>
         </ActiveWorkoutSection>
-      )}
+      )} */}
 
       {workouts.list.length > 0 && (
         <SavedWorkoutsSection>
@@ -89,12 +148,33 @@ export default function Home() {
   );
 }
 
-const Container = styled.div``;
+const Container = styled.div`
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  margin-bottom: 3rem;
+  ${(p) => SurfaceElevation(p.theme.name, 1)};
+`;
 
 const ActiveWorkoutSection = styled.section``;
 
-const PopularWorkoutsSection = styled.section``;
+const PopularWorkoutsSection = styled.section`
+  margin: 1rem;
+   border-radius: 10px;
+  ${(p) => SurfaceElevation(p.theme.name, 2)};
+`;
 
-const LatestWorkoutsSection = styled.section``;
+const LatestWorkoutsSection = styled.section`
+   margin: 3rem 1rem;
+   border-radius: 10px;
+  ${(p) => SurfaceElevation(p.theme.name, 2)};
+`;
 
 const SavedWorkoutsSection = styled.section``;
+
+const WorkoutsContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  
+  flex-wrap: wrap;
+`;

@@ -34,9 +34,9 @@ export const PAGE_TITLE_MAP = {
     icon: "🎛",
   },
   "/history": {
-    full: "🗓 HISTORY",
+    full: "📜 HISTORY",
     text: "History",
-    icon: "🗓",
+    icon: "📜",
   },
   "/workout": {
     full: "💥 WORKOUT",
@@ -57,5 +57,10 @@ export const PAGE_TITLE_MAP = {
     full: "🧬 CLONE",
     text: "Clone",
     icon: "🧬"
+  },
+  "/404": {
+    full: "🔎 404",
+    text: "404",
+    icon: "🔎"
   }
 } as const;

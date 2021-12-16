@@ -17,9 +17,9 @@ type DurationSelectorProps = {
 
 /**
  * DurationSelector
- * 
+ *
  * NumberSelector build to handle time input.
- * 
+ *
  * @param id unique id for input
  * @param duration value of input in seconds
  * @param onChange function called when duration changes
@@ -86,10 +86,8 @@ export const DurationSelector = ({
   useForceButton({
     ref: decrementRef,
     func: () => {
-      if (myDuration.current - 1 >= min) {
-        myDuration.current = myDuration.current - 1;
-        onChange(myDuration.current);
-      }
+      myDuration.current = myDuration.current - 1;
+      onChange(myDuration.current);
     },
     stopFunc: () => myDuration.current - 1 >= min,
   });
@@ -97,10 +95,8 @@ export const DurationSelector = ({
   useForceButton({
     ref: incrementRef,
     func: () => {
-      if (myDuration.current + 1 <= max) {
-        myDuration.current = myDuration.current + 1;
-        onChange(myDuration.current);
-      }
+      myDuration.current = myDuration.current + 1;
+      onChange(myDuration.current);
     },
     stopFunc: () => myDuration.current + 1 <= max,
   });

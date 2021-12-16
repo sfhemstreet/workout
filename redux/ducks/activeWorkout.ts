@@ -1,7 +1,11 @@
 import { ActiveWorkout, Exercise, Workout } from "../../types";
 
 // State
-export const DEFAULT_ACTIVE_WORKOUT_STATE: ActiveWorkout = {
+export interface ActiveWorkoutState extends ActiveWorkout {
+  switchWorkout: Workout | null;
+}
+
+export const DEFAULT_ACTIVE_WORKOUT_STATE: ActiveWorkoutState = {
   id: "",
   name: "",
   description: "",
@@ -12,7 +16,7 @@ export const DEFAULT_ACTIVE_WORKOUT_STATE: ActiveWorkout = {
     avatar: "",
   },
   exercises: [],
-  stars: 0,
+  rating: 0,
   currentExerciseId: "",
   currentRound: 0,
   rounds: 0,
@@ -22,6 +26,7 @@ export const DEFAULT_ACTIVE_WORKOUT_STATE: ActiveWorkout = {
   clonedFromIds: [],
   createdAt: new Date(),
   tags: [],
+  switchWorkout: null,
 };
 
 // Actions
@@ -30,11 +35,14 @@ export enum ActiveWorkoutActionTypes {
   START_WORKOUT = "workout/activeWorkout/START_WORKOUT",
   STOP_WORKOUT = "workout/activeWorkout/STOP_WORKOUT",
   CHANGE_WORKOUT = "workout/activeWorkout/CHANGE_WORKOUT",
+  CHANGE_WORKOUT_ACCEPT = "workout/activeWorkout/CHANGE_WORKOUT_ACCEPT",
+  CHANGE_WORKOUT_CANCEL = "workout/activeWorkout/CHANGE_WORKOUT_CANCEL",
   CHANGE_CURRENT_EXERCISE = "workout/activeWorkout/CHANGE_CURRENT_EXERCISE",
   PREV_EXERCISE = "workout/activeWorkout/PREV_EXERCISE",
   NEXT_EXERCISE = "workout/activeWorkout/NEXT_EXERCISE",
   INCREMENT_CURRENT_ROUND = "workout/activeWorkout/INCREMENT_CURRENT_ROUND",
   COMPLETED = "workout/activeWorkout/COMPLETED",
+  RESTART = "workout/activeWorkout/RESTART",
 }
 
 export type ActiveWorkoutAction =
@@ -44,9 +52,16 @@ export type ActiveWorkoutAction =
     }
   | { type: typeof ActiveWorkoutActionTypes.START_WORKOUT }
   | { type: typeof ActiveWorkoutActionTypes.STOP_WORKOUT }
+  | { type: typeof ActiveWorkoutActionTypes.RESTART }
   | {
       type: typeof ActiveWorkoutActionTypes.CHANGE_WORKOUT;
       payload: { workout: Workout };
+    }
+  | {
+      type: typeof ActiveWorkoutActionTypes.CHANGE_WORKOUT_CANCEL;
+    }
+  | {
+      type: typeof ActiveWorkoutActionTypes.CHANGE_WORKOUT_ACCEPT;
     }
   | {
       type: typeof ActiveWorkoutActionTypes.CHANGE_CURRENT_EXERCISE;
@@ -73,11 +88,23 @@ export const stopActiveWorkout = (): ActiveWorkoutAction => ({
   type: ActiveWorkoutActionTypes.STOP_WORKOUT as const,
 });
 
+export const restartActiveWorkout = (): ActiveWorkoutAction => ({
+  type: ActiveWorkoutActionTypes.RESTART as const,
+});
+
 export const changeActiveWorkout = (workout: Workout): ActiveWorkoutAction => ({
   type: ActiveWorkoutActionTypes.CHANGE_WORKOUT as const,
   payload: {
     workout,
   },
+});
+
+export const changeActiveWorkoutAccept = (): ActiveWorkoutAction => ({
+  type: ActiveWorkoutActionTypes.CHANGE_WORKOUT_ACCEPT as const,
+});
+
+export const changeActiveWorkoutCancel = (): ActiveWorkoutAction => ({
+  type: ActiveWorkoutActionTypes.CHANGE_WORKOUT_CANCEL as const,
 });
 
 export const changeCurrentExercise = (
@@ -116,7 +143,7 @@ export const completedActiveWorkout = (): ActiveWorkoutAction => ({
 export function activeWorkoutReducer(
   state = DEFAULT_ACTIVE_WORKOUT_STATE,
   action: ActiveWorkoutAction
-): ActiveWorkout {
+): ActiveWorkoutState {
   const handleNextExercise = () => {
     if (state.id === "" || state.exercises.length <= 1) return state;
 
@@ -167,12 +194,10 @@ export function activeWorkoutReducer(
   };
 
   switch (action.type) {
-
-    
-
     case ActiveWorkoutActionTypes.INIT:
       return {
         ...action.payload.activeWorkout,
+        switchWorkout: null,
       };
 
     case ActiveWorkoutActionTypes.START_WORKOUT:
@@ -193,16 +218,46 @@ export function activeWorkoutReducer(
       };
 
     case ActiveWorkoutActionTypes.CHANGE_WORKOUT:
+      if (!state.isStarted || state.isCompleted || state.id === "") {
+        return {
+          ...action.payload.workout,
+          currentRound: 1,
+          currentExerciseId:
+            action.payload.workout.exercises.length >= 1
+              ? action.payload.workout.exercises[0].id
+              : "",
+          isStarted: false,
+          isCompleted: false,
+          switchWorkout: null,
+        };
+      }
+
       return {
-        ...action.payload.workout,
+        ...state,
+        switchWorkout: action.payload.workout,
+      };
+
+    case ActiveWorkoutActionTypes.CHANGE_WORKOUT_ACCEPT:
+      if (!state.switchWorkout) return state;
+
+      return {
+        ...state.switchWorkout,
         currentRound: 1,
         currentExerciseId:
-          action.payload.workout.exercises.length >= 1
-            ? action.payload.workout.exercises[0].id
+          state.switchWorkout.exercises.length >= 1
+            ? state.switchWorkout.exercises[0].id
             : "",
         isStarted: false,
         isCompleted: false,
+        switchWorkout: null,
       };
+
+    case ActiveWorkoutActionTypes.CHANGE_WORKOUT_CANCEL: 
+      console.log("CANCEL");
+      return {
+        ...state,
+        switchWorkout: null,
+      }
 
     case ActiveWorkoutActionTypes.CHANGE_CURRENT_EXERCISE:
       return {
@@ -232,6 +287,16 @@ export function activeWorkoutReducer(
           state.exercises.length > 0 ? state.exercises[0].id : "",
         isStarted: false,
         isCompleted: true,
+      };
+
+    case ActiveWorkoutActionTypes.RESTART:
+      return {
+        ...state,
+        currentRound: 1,
+        currentExerciseId:
+          state.exercises.length > 0 ? state.exercises[0].id : "",
+        isStarted: false,
+        isCompleted: false,
       };
 
     default:

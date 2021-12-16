@@ -23,16 +23,17 @@ type NavMenuProps = {
     goToHistory: () => void;
     goToEdit: () => void;
     goToCreate: () => void;
+    goToMyWorkouts: () => void;
   };
 };
 
 /**
  * NavMenu
- * 
- * Nav element for navigating around Workout. 
- * On smaller screens displays a hamburger button that when clicked opens up the menu in a sidebar. 
- * 
- * @param isSideBarOpen when `true` NavMenu is displayed in sidebar on left side of screen 
+ *
+ * Nav element for navigating around Workout.
+ * On smaller screens displays a hamburger button that when clicked opens up the menu in a sidebar.
+ *
+ * @param isSideBarOpen when `true` NavMenu is displayed in sidebar on left side of screen
  * @param toggleSideBar function to control open and close of sidebar
  * @param workouts user's saved workouts
  * @param activeWorkout user's active workout
@@ -76,7 +77,7 @@ const Content = ({
   activeWorkout,
   actions,
 }: ContentProps) => (
-  <ContentList isShowing={isSideBar}>
+  <ContentList isDesktopSidebar={isSideBar}>
     <ContentItem>
       <MenuTitle>Menu</MenuTitle>
     </ContentItem>
@@ -107,7 +108,7 @@ const Content = ({
 
     <ContentItem>
       <LinkBtn onClick={actions.goToHistory}>
-        <span>🗓</span> History
+        <span>📜</span> History
       </LinkBtn>
     </ContentItem>
 
@@ -118,9 +119,10 @@ const Content = ({
     </ContentItem>
 
     <YourWorkoutsContainer>
-      <YourWorkouts>
-        <span>❤️</span> Your Workouts
-      </YourWorkouts>
+      <LinkBtn onClick={actions.goToMyWorkouts}>
+        <span>❤️</span> My Workouts
+      </LinkBtn>
+      
       {workouts.list.length > 0 ? (
         workouts.list.map((workout) => (
           <SmallLinkBtn
@@ -156,21 +158,21 @@ const MenuTitle = styled(H4)`
   color: ${(p) => p.theme.colors.onBackgroundLowEmp};
 `;
 
-const ContentList = styled.ul<{ isShowing?: boolean }>`
-  display: ${(p) => (p.isShowing ? "block" : "none")};
+const ContentList = styled.ul<{ isDesktopSidebar?: boolean }>`
+  display: ${(p) => (p.isDesktopSidebar ? "block" : "none")};
   padding: 2px;
   margin: 0px;
 
-  box-shadow: 0px 1px 5px 0px
-    ${(p) =>
+  ${(p) =>
+    !p.isDesktopSidebar &&
+    `box-shadow: 0px 1px 5px 0px
+    ${
+      p.theme.name === "DARK" ? `rgba(255, 255, 255, 0.281)` : `rgba(0,0,0,0.2)`
+    }; background-color: ${
       p.theme.name === "DARK"
-        ? `rgba(255, 255, 255, 0.281)`
-        : `rgba(0,0,0,0.2)`};
-
-  background-color: ${(p) =>
-    p.theme.name === "DARK"
-      ? `rgba(44, 44, 44, 0.4)`
-      : `rgba(241, 241, 241, 0.2)`};
+        ? `rgba(44, 44, 44, 0.4)`
+        : `rgba(241, 241, 241, 0.2)`
+    }`};
 
   @media ${(p) => p.theme.media.laptop} {
     border-radius: 10px;

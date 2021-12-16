@@ -1,5 +1,5 @@
 import * as Txt from "../../components/Txt";
-import { render } from "../test-utils/test-util";
+import { render } from "../test-utils/render";
 
 test("Txt components render properly", () => {
   const components = render(

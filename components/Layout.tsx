@@ -195,4 +195,7 @@ const MainAreaFade = styled.div<{ transitionStatus: TransitionStatus }>`
       : `1`};
 
   transition: 300ms linear;
+
+  display: flex;
+  justify-content: center;
 `;

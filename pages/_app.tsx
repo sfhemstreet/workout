@@ -9,7 +9,7 @@ import { LayoutContainer } from "../containers/LayoutContainer";
 
 import { userInit } from "../redux/ducks/user";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
-import { firebase } from "../firebase";
+import { firebase } from "../firebase/firebase";
 
 type AppProps = {
   Component: NextComponentType<NextPageContext, any, {}>;

@@ -1,5 +1,6 @@
 import { Difficulty } from "./Difficulty";
 import { Exercise } from "./Exercise";
+import { RatingAvg } from "./Rating";
 import { Tag } from "./Tag";
 
 export type Workout = {
@@ -9,7 +10,7 @@ export type Workout = {
   exercises: Exercise[];
   rounds: number;
   difficulty: Difficulty;
-  stars: number;
+  rating: RatingAvg;
   creator: {
     id: string;
     name: string;

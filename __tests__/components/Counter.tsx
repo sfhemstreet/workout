@@ -1,5 +1,5 @@
 import { Counter } from "../../components/Workout/Counter";
-import { render } from "../test-utils/test-util";
+import { render } from "../test-utils/render";
 
 test("Counter renders the correct time", () => {
   const counter = render(<Counter duration={5} isPaused={false} shouldReset={false} currentTime={5} />);

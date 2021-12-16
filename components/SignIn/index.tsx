@@ -32,6 +32,11 @@ export function SignIn({
     register.isShowing !== undefined && register.isShowing
   );
 
+  const handleClose = (evt: React.MouseEvent<HTMLButtonElement>) => {
+    evt.preventDefault();
+    onClose();
+  }
+
   const state: SignInState = isLoading
     ? "loading"
     : forgottenPassword.isShowing
@@ -55,7 +60,7 @@ export function SignIn({
                   onSwitchToRegister={() => setIsUserRegistering(true)}
                   errorText={signin.error}
                   transitionStatus={transitionStatus}
-                  onClose={onClose}
+                  onClose={handleClose}
                 />
               );
             case "register":
@@ -69,7 +74,7 @@ export function SignIn({
                   onInputUsername={register.onInputUsername}
                   errorText={register.error}
                   transitionStatus={transitionStatus}
-                  onClose={onClose}
+                  onClose={handleClose}
                 />
               );
             case "forgot":

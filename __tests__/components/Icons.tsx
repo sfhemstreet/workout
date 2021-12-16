@@ -1,5 +1,5 @@
 import * as Icons from "../../components/Icons";
-import { render } from "../test-utils/test-util";
+import { render } from "../test-utils/render";
 
 test("Icons render properly", () => {
   const icons = render(<div>

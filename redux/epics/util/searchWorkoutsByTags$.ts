@@ -1,10 +1,9 @@
 import { from, of } from "rxjs";
 import { catchError, map } from "rxjs/operators";
-import { firebase } from "../../../firebase";
+import { firebase } from "../../../firebase/firebase";
 import { Workout } from "../../../types";
 import { Tag } from "../../../types/Tag";
-import { fixWorkoutDates } from "./fixWorkoutDates";
-import { snapshotsToWorkouts } from "./snapshotToWorkouts";
+import { snapshotToWorkouts$ } from "./snapshotToWorkouts$";
 
 export const searchWorkoutsByTags$ = (tags: Tag[]) =>
   from(
@@ -15,7 +14,7 @@ export const searchWorkoutsByTags$ = (tags: Tag[]) =>
       .where("tags", "array-contains-any", tags)
       .get()
   ).pipe(
-    snapshotsToWorkouts(),
+    snapshotToWorkouts$,
     map((workouts) =>
       workouts.sort(
         (a, b) =>

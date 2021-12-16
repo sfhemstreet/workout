@@ -20,11 +20,13 @@ type WorkoutProps = {
   currentExercise: ActiveExercise;
   workout: ActiveWorkout;
   actions: {
+    addWorkoutToList?: () => void;
     toggleStartStop: () => void;
     togglePause: () => void;
     previousExercise: () => void;
     nextExercise: () => void;
     goToWorkouts: () => void;
+    restartWorkout: () => void;
   };
 };
 
@@ -229,7 +231,9 @@ export const Workout = ({
                 isQuit={workout.isStarted}
                 onClick={(e) => {
                   e.preventDefault();
-                  actions.toggleStartStop();
+                  workout.isCompleted
+                    ? actions.restartWorkout()
+                    : actions.toggleStartStop();
                 }}
               >
                 {workout.isStarted
@@ -258,6 +262,21 @@ export const Workout = ({
               )}
             />
           )}
+
+          <FadeInOut
+            timeout={{ exit: 0 }}
+            isShowing={typeof actions.addWorkoutToList !== "undefined"}
+            render={(transitionStatus) => (
+              <SecondaryButton
+                onClick={(e) => {
+                  e.preventDefault();
+                  actions.addWorkoutToList && actions.addWorkoutToList();
+                }}
+              >
+                Add workout to list
+              </SecondaryButton>
+            )}
+          />
         </>
       ) : (
         <Title>You need to select a workout!</Title>

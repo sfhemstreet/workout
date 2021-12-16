@@ -1,27 +1,36 @@
 import styled from "@emotion/styled";
 import React, { useEffect, useState } from "react";
 import { SwitchTransition, Transition } from "react-transition-group";
-import { Subject} from "rxjs";
+import { Subject } from "rxjs";
 import { filter, map, switchMap, tap } from "rxjs/operators";
+import { useWorkoutsFilter } from "../hooks/useWorkoutsFilter";
 
 import { searchWorkoutsByTags$ } from "../redux/epics/util/searchWorkoutsByTags$";
 import { SurfaceElevation } from "../styles/SurfaceElevation";
 import { Workout } from "../types";
 import { Tag } from "../types/Tag";
+import { Column } from "./BrowseWorkouts";
+import { DifficultySelector } from "./DifficultySelector";
+import { RatingsSelector } from "./RatingsSelector";
 import { TagSelector } from "./TagSelector";
-import { H3, P } from "./Txt";
+import { H3, LowEmpSpan, P } from "./Txt";
 import { WorkoutPreview } from "./WorkoutPreview";
 import { WorkoutPreviewLoadingShimmers } from "./WorkoutPreviewLoadingShimmers";
 
+const searchTags$ = new Subject<Tag[]>();
+
 /**
  * SearchTags
- * 
+ *
  * Displays the TagSelector and searches for workouts that contain tags selected,
  * rendering a list of WorkoutPreview's
- * 
+ *
  */
 export const SearchTags = () => {
-  const searchTags$ = new Subject<Tag[]>();
+  const {
+    filter: workoutsFilter,
+    onChangeDifficultyFilter,
+  } = useWorkoutsFilter();
   const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [results, setResults] = useState<Workout[]>([]);
@@ -44,10 +53,9 @@ export const SearchTags = () => {
       .pipe(
         filter((tags) => tags.length > 0 && tags.length < 11),
         tap(() => setIsLoading(true)),
-        switchMap((tags) =>
-          searchWorkoutsByTags$(tags)
-        ),
+        switchMap((tags) => searchWorkoutsByTags$(tags)),
         map((results) => setResults(results)),
+        tap(() => console.log("new")),
         tap(() => setIsLoading(false))
       )
       .subscribe();
@@ -62,6 +70,16 @@ export const SearchTags = () => {
         Select up to 10 tags to discover new workouts!
       </P>
       <TagSelector onClick={handleClickTag} selectedTags={selectedTags} />
+      {selectedTags.length > 0 && (
+        <Column alignItems="center">
+          <LowEmpSpan padding="1rem 1rem 0rem 1rem">Difficulty</LowEmpSpan>
+          <DifficultySelector
+            difficulty={workoutsFilter.difficulty}
+            onSelect={onChangeDifficultyFilter}
+          />
+        </Column>
+      )}
+
       <ResultsBox>
         <SwitchTransition mode="out-in">
           <Transition key={isLoading ? "loading" : "results"} timeout={300}>
@@ -71,13 +89,24 @@ export const SearchTags = () => {
                   transitionStatus={transitionStatus}
                 />
               ) : (
-                results.map((workout) => (
-                  <WorkoutPreview
-                    key={workout.id}
-                    workout={workout}
-                    transitionStatus={transitionStatus}
-                  />
-                ))
+                results
+                  .filter((workout) =>
+                    workoutsFilter.difficulty
+                      ? workout.difficulty === workoutsFilter.difficulty
+                      : true
+                  )
+                  .filter((workout) =>
+                    workoutsFilter.rating
+                      ? workout.rating >= workoutsFilter.rating
+                      : true
+                  )
+                  .map((workout) => (
+                    <WorkoutPreview
+                      key={workout.id}
+                      workout={workout}
+                      transitionStatus={transitionStatus}
+                    />
+                  ))
               )
             }
           </Transition>
@@ -88,12 +117,15 @@ export const SearchTags = () => {
 };
 
 const Container = styled.article`
+  margin-top: 5rem;
+  margin-bottom: 5rem;
   border-radius: 10px;
-  ${(p) => SurfaceElevation(p.theme.name, 2)};
+  ${(p) => SurfaceElevation(p.theme.name, 1)};
 `;
 
 const ResultsBox = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: center;
 `;

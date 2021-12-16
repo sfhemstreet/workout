@@ -118,6 +118,12 @@ const SideBarMenu = styled.aside<{
 
   ${(props) => SurfaceElevation(props.theme.name, 2, true)};
 
+  box-shadow: inset ${(p) => (p.side === "right" ? "1px" : "-1px")} 0px 10px
+    ${(p) =>
+      p.theme.name === "DARK"
+        ? p.theme.colors.background
+        : p.theme.colors.onBackgroundDisabled};
+
   transform: ${(p) =>
     p.transitionStatus === "entered"
       ? `translateX(0px)`

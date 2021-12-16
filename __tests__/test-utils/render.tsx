@@ -2,6 +2,8 @@ import next from "next";
 import React, { ReactElement, useEffect } from "react";
 import { render, RenderOptions } from "@testing-library/react";
 import { Provider as ReduxProvider } from "react-redux";
+import { fakeSchedulers } from "rxjs-marbles/jest";
+import userEvent from "@testing-library/user-event";
 
 import { initializeStore } from "../../redux";
 import { userInit } from "../../redux/ducks/user";
@@ -76,5 +78,7 @@ test("Tests run", () => {
   expect(true).toBe(true);
 });
 
+export { userEvent };
+export { fakeSchedulers };
 export * from "@testing-library/react";
 export { customRender as render };

@@ -14,6 +14,8 @@ type NumberSelectorProps = {
   min?: number;
   max?: number;
   isLabelHidden?: boolean;
+  wait?: number;
+  frequency?: number;
 };
 
 /**
@@ -31,6 +33,8 @@ type NumberSelectorProps = {
  * @param min min number allowed to be selected
  * @param max max number allowed to be selected
  * @param isLabelHidden when `true` hides label from being displayed but is still accessible to screen readers
+ * @param wait useForceButton wait param
+ * @param frequency useForceButton frequency param
  */
 export const NumberSelector = ({
   id,
@@ -40,6 +44,8 @@ export const NumberSelector = ({
   min = 0,
   max = 10,
   isLabelHidden,
+  wait,
+  frequency,
 }: NumberSelectorProps) => {
   // Use a ref instead of state so that useForceButton does not use stale closure state.
   const myNum = useRef(number);
@@ -47,9 +53,9 @@ export const NumberSelector = ({
   const incrementRef = useRef<HTMLButtonElement>(null);
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newNumber = parseInt(e.target.value.replace(/[^0-9]/g, ""));
+    let newNumber = parseInt(e.target.value.replace(/[^0-9]/g, ""));
 
-    if (isNaN(newNumber)) return 0;
+    if (isNaN(newNumber)) newNumber = 0;
 
     if (newNumber > max || newNumber < min) return;
 
@@ -64,6 +70,8 @@ export const NumberSelector = ({
       onChange(myNum.current);
     },
     stopFunc: () => myNum.current - 1 >= min,
+    wait,
+    frequency,
   });
 
   useForceButton({
@@ -73,6 +81,8 @@ export const NumberSelector = ({
       onChange(myNum.current);
     },
     stopFunc: () => myNum.current + 1 <= max,
+    wait,
+    frequency,
   });
 
   return (

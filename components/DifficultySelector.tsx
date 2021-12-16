@@ -6,7 +6,7 @@ import { SelectableInlineButton } from "./Buttons";
 const DIFFICULTY_LEVELS: Difficulty[] = ["active-rest", "moderate", "hard", "extreme"];
 
 type DifficultySelectorProps = {
-  difficulty: Difficulty;
+  difficulty: Difficulty | undefined;
   onSelect: (difficulty: Difficulty) => void;
 };
 
@@ -38,7 +38,7 @@ export const DifficultySelector = ({
   </Row>
 );
 
-const Row = styled.div`
+export const Row = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;

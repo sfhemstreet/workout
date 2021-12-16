@@ -1,5 +1,5 @@
 import { Workout } from "../../components/Workout";
-import { render } from "../test-utils/test-util";
+import { render } from "../test-utils/render";
 
 test("Workout renders properly", () => {
   const workout = render(

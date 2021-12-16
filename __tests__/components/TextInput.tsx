@@ -1,5 +1,5 @@
 import { TextInput } from "../../components/TextInput";
-import { fireEvent, render } from "../test-utils/test-util";
+import { fireEvent, render } from "../test-utils/render";
 
 test("TextInput renders properly", () => {
   const inputValues = {

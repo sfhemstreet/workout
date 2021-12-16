@@ -8,7 +8,7 @@ import {
   mergeMap,
   withLatestFrom,
 } from "rxjs/operators";
-import { firebase } from "../../firebase";
+import { firebase } from "../../firebase/firebase";
 import { AppEpic } from "..";
 import { SoundActionTypes } from "../ducks/sound";
 import { ActiveExerciseActionTypes } from "../ducks/activeExercise";

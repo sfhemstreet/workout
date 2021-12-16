@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { firebase } from "../firebase";
+import { firebase } from "../firebase/firebase";
 
 import { SignIn } from "../components/SignIn";
 import { userLoginBegin, userRegisterBegin } from "../redux/ducks/user";

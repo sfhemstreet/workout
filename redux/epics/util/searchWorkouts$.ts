@@ -1,9 +1,9 @@
-import { firebase } from "../../../firebase";
+import { firebase } from "../../../firebase/firebase";
 import { combineLatest, from, of } from "rxjs";
 import { switchMap, map, catchError, tap } from "rxjs/operators";
 import { Workout } from "../../../types";
 import { removeDuplicates } from "../../../utils/removeDuplicates";
-import { snapshotsToWorkouts } from "./snapshotToWorkouts";
+import { snapshotToWorkouts$ } from "./snapshotToWorkouts$";
 
 export const searchWorkouts$ = (searchInput: string) =>
   of(searchInput).pipe(
@@ -17,7 +17,7 @@ export const searchWorkouts$ = (searchInput: string) =>
             .where("tags", "array-contains", searchInput)
             .get()
         ).pipe(
-          snapshotsToWorkouts(),
+          snapshotToWorkouts$,
           catchError((err) => {
             console.error("Failed to query workout tags.", err);
             return of([] as Workout[]);
@@ -31,7 +31,7 @@ export const searchWorkouts$ = (searchInput: string) =>
             .where("name", "==", searchInput)
             .get()
         ).pipe(
-          snapshotsToWorkouts(),
+          snapshotToWorkouts$,
           catchError((err) => {
             console.error("Failed to query workout names.", err);
             return of([] as Workout[]);
@@ -45,7 +45,7 @@ export const searchWorkouts$ = (searchInput: string) =>
             .where("creator.name", "==", searchInput)
             .get()
         ).pipe(
-          snapshotsToWorkouts(),
+          snapshotToWorkouts$,
           catchError((err) => {
             console.error("Failed to query workout creator names.", err);
             return of([] as Workout[]);
@@ -55,6 +55,6 @@ export const searchWorkouts$ = (searchInput: string) =>
     ),
     tap(() => console.log("Search Completed")),
     map(([tags, names, creators]) =>
-      removeDuplicates([...tags, ...names, ...creators])
+      removeDuplicates(tags, names, creators)
     )
   );

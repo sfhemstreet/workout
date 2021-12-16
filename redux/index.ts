@@ -14,6 +14,7 @@ import {
 import {
   ActiveWorkoutAction,
   activeWorkoutReducer,
+  ActiveWorkoutState,
   DEFAULT_ACTIVE_WORKOUT_STATE,
 } from "./ducks/activeWorkout";
 
@@ -64,6 +65,7 @@ import { themeEpics } from "./epics/themeEpics";
 import { soundEpics } from "./epics/soundEpics";
 import { signInModalEpics } from "./epics/signInModalEpics";
 import { wakeLockEpics } from "./epics/wakeLockEpics";
+import { DEFAULT_SWITCH_WORKOUT_STATE, SwitchWorkoutAction, switchWorkoutReducer, SwitchWorkoutState } from "./ducks/switchWorkout";
 
 export type AppState = {
   user: User;
@@ -72,8 +74,9 @@ export type AppState = {
   signInModal: SignInModalState;
   userSideBar: UserSideBarState;
   workouts: Workouts;
-  activeWorkout: ActiveWorkout;
+  activeWorkout: ActiveWorkoutState;
   activeExercise: ActiveExercise;
+  switchWorkout: SwitchWorkoutState;
 };
 
 export type AppAction =
@@ -84,7 +87,8 @@ export type AppAction =
   | UserSideBarAction
   | WorkoutsAction
   | ActiveWorkoutAction
-  | ActiveExerciseAction;
+  | ActiveExerciseAction
+  | SwitchWorkoutAction;
 
 export type AppEpic = Epic<AppAction, AppAction | never, AppState>;
 
@@ -101,6 +105,7 @@ export const DEFAULT_APP_STATE: AppState = {
   workouts: DEFAULT_WORKOUTS_STATE,
   activeWorkout: DEFAULT_ACTIVE_WORKOUT_STATE,
   activeExercise: DEFAULT_ACTIVE_EXERCISE_STATE,
+  switchWorkout: DEFAULT_SWITCH_WORKOUT_STATE,
 };
 
 const rootReducer = combineReducers({
@@ -112,6 +117,7 @@ const rootReducer = combineReducers({
   workouts: workoutsReducer,
   activeWorkout: activeWorkoutReducer,
   activeExercise: activeExerciseReducer,
+  switchWorkout: switchWorkoutReducer,
 });
 
 const rootEpic = combineEpics(

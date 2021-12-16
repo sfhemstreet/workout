@@ -36,6 +36,7 @@ export default async function createUserApiRoute(
   const uid: string | null = await getUserId(req);
 
   if (!uid) {
+    console.log("FAILED");
     res.status(401).json({
       type: "FAILED",
       data: { error: "Not authenticated." },

@@ -25,7 +25,7 @@ import {
 import { getFirebaseUser$ } from "./util/getFirebaseUser$";
 import { getOrCreateTempUser$ } from "./util/getOrCreateTempUser$";
 import { myOfType } from "./util/myOfType";
-import { firebase } from "../../firebase";
+import { firebase } from "../../firebase/firebase";
 import { deleteUserIfExists$ } from "./util/registerHelpers";
 import { createTempUser$ } from "./util/createTempUser$";
 
@@ -77,6 +77,7 @@ const registerUserEpic: AppEpic = (action$, state$) =>
                           ? {
                               ...workout,
                               creator: { ...workout.creator, id: user.uid },
+                              createdAt: firebase.firestore.Timestamp.fromDate(workout.createdAt)
                             }
                           : workout
                       ),
@@ -299,24 +300,6 @@ const completedAWorkoutEpic: AppEpic = (action$, state$) =>
       userCompletedWorkout(state.activeWorkout.id, state.activeWorkout.name)
     )
   );
-
-/**
- * completedAWorkoutEpic
- *
- * When a logged in user completes a workout add it to their completedWorkouts in firebase
- */
-//  const addCompletedWorkoutToFirebaseEpic: AppEpic = (action$, state$) =>
-//   action$.pipe(
-//    myOfType(ActiveWorkoutActionTypes.COMPLETED),
-//    withLatestFrom(state$),
-//    filter(([,state]) => state.user.isAuthenticated),
-//    map(([,state]) => ({ user: state.user, completedWorkout: state.activeWorkout })),
-//    mergeMap(({ user, completedWorkout }) =>
-//     from(
-
-//     )
-//    )
-//  );
 
 export const userEpics = [
   registerUserEpic,

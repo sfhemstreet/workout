@@ -247,9 +247,15 @@ export const preparedExercises: PreparedExercise = [
     tags: ["core", "full-body"],
   },
   {
-    name: "Side Plank",
+    name: "Side Plank: Left",
     description:
-      "On your side, with just one foot and one forearm touching the ground, raise your body up and keep your body in a straight line.",
+      "On your left side, with just one foot and one forearm touching the ground, raise your body up and keep your body in a straight line.",
+    tags: ["core"],
+  },
+  {
+    name: "Side Plank: Right",
+    description:
+      "On your right side, with just one foot and one forearm touching the ground, raise your body up and keep your body in a straight line.",
     tags: ["core"],
   },
   {

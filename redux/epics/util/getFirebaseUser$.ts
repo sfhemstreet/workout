@@ -1,6 +1,6 @@
-import { firebase } from "../../../firebase";
+import { firebase } from "../../../firebase/firebase";
 import { combineLatest, forkJoin, from, of, timer } from "rxjs";
-import { map, mergeMap, catchError } from "rxjs/operators";
+import { map, mergeMap, catchError, tap } from "rxjs/operators";
 import {
   ActiveExercise,
   ActiveWorkout,
@@ -28,7 +28,7 @@ import {
   DEFAULT_ACTIVE_WORKOUT_STATE,
   initActiveWorkout,
 } from "../../ducks/activeWorkout";
-import { fixWorkoutDate } from "./fixWorkoutDates";
+import { fixWorkoutDate } from "./fixWorkoutDates$";
 
 /**
  * getFirebaseUser$
@@ -78,6 +78,7 @@ export const getFirebaseUser$ = ({
               : data
             : data
         ),
+        // lastActivity may not exist, its ok.
         catchError((err) => of(undefined))
       ),
     }),
@@ -106,6 +107,7 @@ export const getFirebaseUser$ = ({
               },
               latestActivity: data.lastActivity,
             })),
+            tap((data) => console.log("workouts", data.user.workouts.length)),
             mergeMap((data) =>
               data.user.workouts.length > 0
                 ? fetchUsersWorkouts$(user.uid, data.user.workouts).pipe(

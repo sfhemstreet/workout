@@ -90,11 +90,7 @@ export const CurrentExerciseDisplay = ({
         repetitions={repetitions}
       />
 
-      {/* <FadeInOut isShowing={repetitions !== 0} timeout={{ exit: 0 }}>
-        <P textAlign="center">Reps: {repetitions}</P>
-      </FadeInOut> */}
-
-      <SpaceMaker shrink={repetitions !== 0}>
+      <SpaceMaker>
         <FadeInOut
           isShowing={
             nextExercise !== undefined && currentTime <= 10 && currentTime > 0
@@ -133,6 +129,6 @@ const TitleButton = styled(TertiaryButton)<{ noHover: boolean }>`
     `}
 `;
 
-const SpaceMaker = styled.div<{ shrink: boolean }>`
+const SpaceMaker = styled.div<{ shrink?: boolean }>`
   height: ${(p) => (p.shrink ? "fit-content" : "36px")};
 `;

@@ -7,18 +7,24 @@ import { hasOwnProperty } from "./hasOwnProperty";
  *
  * ie `[1,1,2] => [1,2]`
  *
+ * ie `[1,2], [1,2,3] => [1,2,3]`
+ *
  * ie `[{ id: 'a' }, { id: 'a' }] => [{ id: 'a' }]`
  *
  * @param input array of same type, if objects they must have `id` property
  */
+export function removeDuplicates<T>(...input: T[][]): T[];
 export function removeDuplicates<T>(input: T[]): T[];
 export function removeDuplicates<T extends { id: string }>(input: T[]): T[] {
   if (input.length === 0) return input;
 
-  if (hasOwnProperty(input[0], "id")) {
+  const arr =
+    input.filter(Array.isArray).length > 0 ? (input.flat() as T[]) : input;
+
+  if (hasOwnProperty(arr[0], "id")) {
     const uniqueObjects = new Map<string, T>();
 
-    input.forEach((i) => {
+    arr.forEach((i) => {
       if (!uniqueObjects.has(i.id)) {
         uniqueObjects.set(i.id, i);
       }
@@ -26,6 +32,6 @@ export function removeDuplicates<T extends { id: string }>(input: T[]): T[] {
 
     return [...uniqueObjects.values()];
   } else {
-    return [...new Set([...input])];
+    return [...new Set([...arr])];
   }
 }

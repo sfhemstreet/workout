@@ -279,7 +279,7 @@ export function workoutsReducer(
         list: [
           ...state.list.map((workout) =>
             workout.id === action.payload.workoutId
-              ? { ...workout, stars: workout.stars + 1 }
+              ? { ...workout, stars: workout.rating + 1 }
               : workout
           ),
         ],

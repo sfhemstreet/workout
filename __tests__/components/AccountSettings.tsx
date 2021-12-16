@@ -1,5 +1,5 @@
 import { AccountSettings } from "../../components/AccountSettings";
-import { render } from "../test-utils/test-util";
+import { render } from "../test-utils/render";
 
 test("AccountSettings renders authorized user inputs", () => {
   const accountSettings = render(

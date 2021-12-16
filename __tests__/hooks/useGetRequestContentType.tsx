@@ -1,61 +1,69 @@
-import { Subject } from "rxjs";
-import { useGetRequestContentType } from "../../hooks/useGetRequestContentType";
-import { render } from "../test-utils/test-util";
-
+import { Observable, of, Subject } from "rxjs";
 import { ajax } from "rxjs/ajax";
+import { useGetRequestContentType } from "../../hooks/useGetRequestContentType";
+import { fakeTimers } from "../test-utils/helpers";
+import { render, fakeSchedulers } from "../test-utils/render";
+
+fakeTimers();
+
+const imageUrl = "url";
 
 // useGetRequestContentType uses ajax, mock the ajax call to return image/png
-jest.mock("rxjs/ajax", () => ({
-  ajax: (str: string) => ({
-    xhr: { 
-      getResponseHeader: (str: "Content-Type") => "image/png"
-    },
-  }),
-}));
-
-test("useGetRequestContentType returns content type of image/png", () => {
-  let contentType = "";
-  const subject = new Subject<string>();
-  const func = jest.fn((value: string) => (contentType = value));
-
-  const Component = () => {
-    useGetRequestContentType(subject, func);
-    return <div>Hi</div>;
+jest.mock("rxjs/ajax", () => {
+  const { of } = require("rxjs");
+  return {
+    ajax: (url: string) =>
+      of({
+        xhr: {
+          getResponseHeader: (_: "Content-Type") =>
+            url === imageUrl ? "image/png" : undefined,
+        },
+      }),
   };
-  const rendered = render(<Component />);
+});
 
-  subject.next(
-    "url to image"
-  );
+test(
+  "useGetRequestContentType returns content type of image/png",
+  fakeSchedulers((advance) => {
+    let contentType = "";
+    const subject = new Subject<string>();
+    const func = jest.fn((value: string) => (contentType = value));
 
-  setTimeout(() => {
+    const Component = () => {
+      useGetRequestContentType(subject, func);
+      return <div>Hi</div>;
+    };
+    
+    render(<Component />);
+
+    subject.next(imageUrl);
+
+    // Need to wait because we debounce by 400 inside hook
+    advance(400);
+
     expect(contentType).toBe("image/png");
-  }, 2000);
-});
+  })
+);
 
-// the hooks uses ajax to get content-type, this time return undefined to trigger failure.
-jest.mock("rxjs/ajax", () => ({
-  ajax: (str: string) => ({
-    xhr: { 
-      getResponseHeader: (str: "Content-Type") => undefined
-    },
-  }),
-}));
+test(
+  "useGetRequestContentType returns 'FAILED'",
+  fakeSchedulers((advance) => {
+    let contentType = "";
+    const subject = new Subject<string>();
+    const func = jest.fn((value: string) => (contentType = value));
 
-test("useGetRequestContentType returns 'FAILED'", () => {
-  let contentType = "";
-  const subject = new Subject<string>();
-  const func = jest.fn((value: string) => (contentType = value));
+    const Component = () => {
+      useGetRequestContentType(subject, func);
+      return <div>Hi</div>;
+    };
+    
+    render(<Component />);
 
-  const Component = () => {
-    useGetRequestContentType(subject, func);
-    return <div>Hi</div>;
-  };
-  const rendered = render(<Component />);
+    subject.next("not a valid url");
 
-  subject.next("not a valid url");
+    // Need to wait because we debounce by 400 inside hook
+    advance(400);
 
-  setTimeout(() => {
     expect(contentType).toBe("FAILED");
-  }, 2000);
-});
+  })
+);

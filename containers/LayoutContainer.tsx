@@ -1,26 +1,44 @@
+import isEqual from "lodash.isequal";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import React from "react";
 
 import { Layout } from "../components/Layout";
 import { SignInModal } from "../components/SignInModal";
+import { SwitchWorkoutsAlert } from "../components/SwitchWorkoutsAlert";
 import { PAGE_TITLE_MAP } from "../constants";
+import {
+  changeActiveWorkoutAccept,
+  changeActiveWorkoutCancel,
+} from "../redux/ducks/activeWorkout";
 import { toggleSignInModal } from "../redux/ducks/signInModal";
+import {
+  switchWorkoutAccept,
+  switchWorkoutCancel,
+} from "../redux/ducks/switchWorkout";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { NavMenuContainer } from "./NavMenuContainer";
 import { UserMenuContainer } from "./UserMenuContainer";
 
 /**
  * LayoutContainer
- * 
- * Connects to redux store to control the signInModal 
+ *
+ * Connects to redux store to control the signInModal
  * and determines the pages title and icon.
- * 
+ *
  * @returns Layout component
  */
 export const LayoutContainer: React.FC = ({ children }) => {
   const dispatch = useAppDispatch();
-  const isSignInModalOpen = useAppSelector((state) => state.signInModal.isOpen);
+  const { isSignInModalOpen, isSwitchWorkoutModalOpen, currentWorkoutName } =
+    useAppSelector(
+      (state) => ({
+        isSignInModalOpen: state.signInModal.isOpen,
+        isSwitchWorkoutModalOpen: state.activeWorkout.switchWorkout !== null,
+        currentWorkoutName: state.activeWorkout.name,
+      }),
+      isEqual
+    );
 
   const router = useRouter();
   const pageTitle =
@@ -31,7 +49,6 @@ export const LayoutContainer: React.FC = ({ children }) => {
     <>
       <Head>
         <title>
-          {pageTitle.text !== "Workout" ? "Workout - " : ""}
           {pageTitle.text}
         </title>
         <link
@@ -49,6 +66,12 @@ export const LayoutContainer: React.FC = ({ children }) => {
       <SignInModal
         isShowing={isSignInModalOpen}
         toggleIsShowing={() => dispatch(toggleSignInModal())}
+      />
+      <SwitchWorkoutsAlert
+        isShowing={isSwitchWorkoutModalOpen}
+        onCancel={() => dispatch(changeActiveWorkoutCancel())}
+        onConfirm={() => dispatch(changeActiveWorkoutAccept())}
+        workoutName={currentWorkoutName}
       />
     </>
   );

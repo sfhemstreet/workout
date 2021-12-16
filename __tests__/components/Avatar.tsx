@@ -1,5 +1,5 @@
 import { Avatar } from "../../components/Avatar";
-import { fireEvent, render } from "../test-utils/test-util";
+import { fireEvent, render } from "../test-utils/render";
 
 test("Avatar renders properly", () => {
   const onclick = jest.fn();

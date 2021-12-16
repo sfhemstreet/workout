@@ -1,5 +1,5 @@
 import { useTheme } from "@emotion/react";
-import { render } from "../test-utils/test-util";
+import { render } from "../test-utils/render";
 
 test("AppThemeProvider provides themeType to children", () => {
 

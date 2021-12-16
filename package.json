@@ -5,6 +5,7 @@
   "scripts": {
     "scrape": "python3 ./scrape/scrape-workouts.py",
     "test": "jest",
+    "testing": "jest --watch",
     "dev": "next dev",
     "firebase": "firebase emulators:start",
     "devf": "next dev & firebase emulators:start",
@@ -18,7 +19,7 @@
     "firebase": "^8.6.2",
     "firebase-admin": "^9.10.0",
     "lodash.isequal": "^4.5.0",
-    "next": "^11.1.0",
+    "next": "^11.1.2",
     "react": "^17.0.2",
     "react-canvas-confetti": "^1.2.0",
     "react-dom": "^17.0.2",
@@ -27,14 +28,17 @@
     "redux": "^4.1.0",
     "redux-devtools-extension": "^2.13.9",
     "redux-observable": "^1.2.0",
-    "rxjs": "6",
+    "rxjs": "6.6.7",
     "ts-debounce": "^3.0.0",
     "uuid": "^8.3.2",
     "validator": "^13.6.0"
   },
   "devDependencies": {
+    "@testing-library/dom": "^8.1.0",
     "@testing-library/react": "^11.2.7",
     "@testing-library/react-hooks": "^7.0.1",
+    "@testing-library/user-event": "^13.2.1",
+    "@types/faker": "^5.5.8",
     "@types/jest": "^26.0.23",
     "@types/lodash.isequal": "^4.5.5",
     "@types/react": "17.0.6",
@@ -42,7 +46,9 @@
     "@types/uuid": "^8.3.0",
     "@types/validator": "^13.1.4",
     "babel-jest": "^26.6.3",
+    "faker": "^5.5.3",
     "jest": "^26.6.3",
+    "rxjs-marbles": "6.0.1",
     "typescript": "^4.3.4"
   }
 }

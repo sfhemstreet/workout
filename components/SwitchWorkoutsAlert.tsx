@@ -49,7 +49,7 @@ export const SwitchWorkoutsAlert = ({
 
             <Row justifyContent="space-between">
               <SecondaryButton onClick={onCancel}>Cancel</SecondaryButton>
-              <SubmitButton onClick={onConfirm}>Yes</SubmitButton>
+              <SubmitButton onClick={onConfirm}>Switch</SubmitButton>
             </Row>
           </DialogWindow>
         </Center>
@@ -58,8 +58,9 @@ export const SwitchWorkoutsAlert = ({
   />
 );
 
-const DialogWindow = styled.div`
-  width: 280px;
+export const DialogWindow = styled.div`
+  width: 100%;
+  max-width: 500px;
   height: 280px;
 
   padding: 10px;

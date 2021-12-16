@@ -7,14 +7,19 @@ type HamburgerProps = {
 
 /**
  * Hamburger
- * 
- * Button styled like typical hamburger menu icon, 
+ *
+ * Button styled like typical hamburger menu icon,
  * ie 3 parallel lines stacked on top of each other.
- * 
+ *
  * @param onClick function to call when clicked
  */
 export const Hamburger = ({ onClick }: HamburgerProps) => (
-  <Button onClick={onClick}>
+  <Button
+    onClick={onClick}
+    aria-label="Navigation menu"
+    role="tooltip"
+    data-microtip-position="bottom-right"
+  >
     <div />
     <div />
     <div />

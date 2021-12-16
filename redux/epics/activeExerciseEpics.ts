@@ -1,7 +1,6 @@
 import { from, of, timer } from "rxjs";
 import {
   catchError,
-  debounceTime,
   filter,
   ignoreElements,
   map,
@@ -26,11 +25,11 @@ import {
   nextRound,
 } from "../ducks/activeWorkout";
 import { ofType } from "redux-observable";
-import { endExerciseTone } from "./util/endExerciseTone";
 import { REST_PERIOD } from "../../constants";
 import { Exercise } from "../../types";
-import { firebase } from "../../firebase";
+import { firebase } from "../../firebase/firebase";
 import { setLocalStorageActiveExercise } from "./util/saveLocally";
+import router from "next/router";
 
 /**
  * Active Exercise Epics
@@ -47,32 +46,34 @@ import { setLocalStorageActiveExercise } from "./util/saveLocally";
  */
 const resumePauseExerciseEpic: AppEpic = (action$, state$) =>
   action$.pipe(
+    filter(() => router.pathname === "/workout"),
     withLatestFrom(state$),
-    // filter actions that keep timer going (some require checking state)
+    // Actions that trigger decrement exercise timer
     filter(
-      ([action, state]) =>
+      ([action]) =>
         action.type === ActiveExerciseActionTypes.END_PAUSE ||
         action.type === ActiveWorkoutActionTypes.START_WORKOUT ||
-        (action.type === ActiveExerciseActionTypes.CHANGE_ACTIVE_EXERCISE &&
-          state.activeWorkout.isStarted &&
-          !state.activeExercise.isPaused &&
-          state.activeExercise.duration !== 0) ||
-        // If user hits refresh and INIT runs,
-        // make sure the time starts playing again.
-        (action.type === ActiveExerciseActionTypes.INIT &&
-          state.activeWorkout.isStarted &&
-          !state.activeExercise.isPaused &&
-          !state.activeWorkout.isCompleted)
+        action.type === ActiveExerciseActionTypes.CHANGE_ACTIVE_EXERCISE ||
+        action.type === ActiveExerciseActionTypes.INIT
     ),
-    filter(([, state]) =>  state.activeExercise.duration > 0),
+    // State that is required for decrement
+    filter(
+      ([, state]) =>
+        state.activeExercise.duration > 0 && 
+        state.activeWorkout.isStarted &&
+        !state.activeWorkout.isCompleted &&
+        !state.activeExercise.isPaused
+    ),
+    tap(([action, state]) => console.log(action.type, state.activeExercise.isPaused)),
     switchMap(() =>
       timer(1000, 1000).pipe(
         takeUntil(
           action$.pipe(
             withLatestFrom(state$),
-            // Actions that stop the timer
+            // Actions / state that stop the timer
             filter(
               ([action, state]) =>
+                router.pathname !== "/workout" ||
                 action.type === ActiveExerciseActionTypes.START_PAUSE ||
                 action.type === ActiveWorkoutActionTypes.STOP_WORKOUT ||
                 action.type === ActiveWorkoutActionTypes.COMPLETED ||
@@ -92,17 +93,7 @@ const resumePauseExerciseEpic: AppEpic = (action$, state$) =>
     )
   );
 
-/**
- * Controls exercise time reset.
- */
-const resetExerciseTimerEpic: AppEpic = (action$) =>
-  action$.pipe(
-    ofType(
-      ActiveWorkoutActionTypes.STOP_WORKOUT,
-      ActiveWorkoutActionTypes.COMPLETED
-    ),
-    mapTo(resetExerciseTimer())
-  );
+
 
 /**
  * When the timer hits -1, this epic sends an action to switch to the next exercise.
@@ -130,26 +121,7 @@ const switchTimeAfterZeroEpic: AppEpic = (action$, state$) =>
     })
   );
 
-/**
- * Checks to see if round needs to be increased or if the workout is actually over 
- * when a NEXT_EXERCISE action comes in. 
- */
-const switchRoundOrCompleteOnNextExerciseEpic: AppEpic = (action$, state$) =>
-  action$.pipe(
-    ofType(ActiveWorkoutActionTypes.NEXT_EXERCISE),
-    withLatestFrom(state$),
-    filter(
-      ([, state]) =>
-        state.activeWorkout.exercises[0] &&
-        state.activeWorkout.exercises[0].id ===
-          state.activeWorkout.currentExerciseId
-    ),
-    map(([, state]) =>
-      state.activeWorkout.currentRound + 1 > state.activeWorkout.rounds
-        ? completedActiveWorkout()
-        : nextRound()
-    )
-  );
+
 
 /**
  * If the last exercise of the last round of a workout is a rest period,
@@ -159,9 +131,7 @@ const skipRestIfLastExerciseAndLastRoundEpic: AppEpic = (action$, state$) =>
   action$.pipe(
     ofType(ActiveExerciseActionTypes.CHANGE_ACTIVE_EXERCISE),
     withLatestFrom(state$),
-    filter(([, state]) => 
-      state.activeWorkout.exercises.length > 0
-    ),
+    filter(([, state]) => state.activeWorkout.exercises.length > 0),
     filter(
       ([, state]) =>
         state.activeWorkout.currentRound === state.activeWorkout.rounds &&
@@ -187,7 +157,6 @@ const saveActiveExerciseEpic: AppEpic = (action$, state$) =>
       ActiveExerciseActionTypes.START_PAUSE
     ),
     throttleTime(5000),
-    //debounceTime(2000),
     withLatestFrom(state$),
     mergeMap(([, state]) =>
       state.user.isAuthenticated
@@ -216,9 +185,7 @@ const saveActiveExerciseEpic: AppEpic = (action$, state$) =>
 
 export const activeExercisesEpics = [
   resumePauseExerciseEpic,
-  resetExerciseTimerEpic,
   switchTimeAfterZeroEpic,
-  switchRoundOrCompleteOnNextExerciseEpic,
   skipRestIfLastExerciseAndLastRoundEpic,
   saveActiveExerciseEpic,
 ];

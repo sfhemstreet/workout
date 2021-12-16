@@ -133,6 +133,15 @@ const Time = styled.h1<{ increaseSize: boolean }>`
   text-align: center;
   font-size: ${(p) => (p.increaseSize ? "11.2rem" : "8.2rem")};
 
+  text-shadow: 0px 0px 3px
+      ${(p) =>
+        p.theme.name === "DARK" ? p.theme.colors.primary : "transparent"},
+    2px 2px 1px
+      ${(p) =>
+        p.theme.name === "DARK"
+          ? p.theme.colors.onError
+          : p.theme.colors.onBackgroundDisabled};
+
   transition: ${(p) => p.theme.transitions.normal};
   animation: ${FadeInKeyframe} linear 300ms both;
 
@@ -156,6 +165,11 @@ const Time = styled.h1<{ increaseSize: boolean }>`
 const Reps = styled(H2)`
   position: absolute;
   bottom: 60px;
+  text-shadow: 1px 1px 1px
+    ${(p) =>
+      p.theme.name === "DARK"
+        ? p.theme.colors.onError
+        : p.theme.colors.onBackgroundDisabled};
 `;
 
 const SVG = styled.svg`

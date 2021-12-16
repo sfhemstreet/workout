@@ -14,11 +14,15 @@ export async function getUserId(req: NextApiRequest) {
     const idToken: string | undefined = req.body.token;
 
     if (!idToken) {
+      console.log("NULL TOKEN");
       return null;
     }
 
+    console.log("TOKEN ->", idToken);
+
     try {
       const decodedToken = await firebaseAdmin.auth().verifyIdToken(idToken);
+      console.log("Decoded??", decodedToken, "uid?", decodedToken.uid);
       return decodedToken.uid;
     } catch (err) {
       console.error("Failed to decode token.", err);

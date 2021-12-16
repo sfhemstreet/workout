@@ -32,7 +32,7 @@ type SignInInputsProps = {
   errorText?: string;
   onForgotPassword: () => void;
   transitionStatus: TransitionStatus;
-  onClose: () => void;
+  onClose: (evt: React.MouseEvent<HTMLButtonElement>) => void;
 };
 
 /**

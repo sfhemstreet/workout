@@ -43,7 +43,7 @@ type RegisterInputsProps = {
   onSwitchToSignIn: () => void;
   errorText: string | undefined;
   transitionStatus: TransitionStatus;
-  onClose: () => void;
+  onClose: (evt: React.MouseEvent<HTMLButtonElement>) => void;
 };
 
 /**

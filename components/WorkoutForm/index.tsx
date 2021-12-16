@@ -72,7 +72,8 @@ export const WorkoutForm = ({
       ? mergeState(editWorkout)
       : { ...DEFAULT_STATE, isShared: canShare ?? false }
   );
-  const [isConfirmDeleteModalShowing, setIsConfirmDeleteModalShowing] = useState(false);
+  const [isConfirmDeleteModalShowing, setIsConfirmDeleteModalShowing] =
+    useState(false);
 
   const nameDescriptionValidation = ({
     value,
@@ -212,7 +213,7 @@ export const WorkoutForm = ({
               ? 0
               : e.repetitions,
         })),
-        stars: editWorkout ? editWorkout.stars : 0,
+        rating: editWorkout ? editWorkout.rating : 0,
         clonedFromIds: editWorkout ? editWorkout.clonedFromIds : [],
         isShared: canShare ? state.isShared : false,
         createdAt: editWorkout
@@ -241,6 +242,8 @@ export const WorkoutForm = ({
         type: WorkoutFormActionTypes.CHANGE_FIELD,
         payload: { change: { error } },
       });
+
+      console.log("errors => ", error)
     }
   };
 
@@ -423,7 +426,7 @@ export const WorkoutForm = ({
 
   return (
     <>
-      <Form>
+      <Form onSubmit={(e) => e.preventDefault()}>
         <Row justifyContent="space-between">
           {/* Title */}
           <H2>

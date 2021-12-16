@@ -1,8 +1,6 @@
-import { firebase } from "../../../firebase";
-import { Observable, of, pipe } from "rxjs";
+import { of, pipe } from "rxjs";
 import { catchError, map } from "rxjs/operators";
 import { Workout } from "../../../types";
-import { hasOwnProperty } from "../../../utils/hasOwnProperty";
 
 /**
  * fixWorkoutDates
@@ -10,7 +8,7 @@ import { hasOwnProperty } from "../../../utils/hasOwnProperty";
  * Pipe-able operator that converts workouts `createdAt` properties from
  * firestore timestamp object to JS Date object.
  */
-export const fixWorkoutDates = () =>
+export const fixWorkoutDates$ =
   pipe(
     map((ws: any[]) => ws.map(fixWorkoutDate)),
     catchError((err) => {
@@ -38,8 +36,6 @@ export const fixWorkoutDate = <T extends Workout>(workout: any): T => {
       ...workout,
       createdAt: workout.createdAt.toDate(),
     };
-
-  console.log("none");
 
   return workout;
 };

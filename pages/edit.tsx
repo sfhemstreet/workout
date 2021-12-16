@@ -22,20 +22,24 @@ import { LoadingShimmer } from "../components/LoadingShimmer";
 import { SwitchTransition, Transition } from "react-transition-group";
 import { pushToClone } from "../utils/pushToClone";
 import { uuid } from "../utils/uuid";
+import { SurfaceElevation } from "../styles/SurfaceElevation";
 
 /**
  * Edit Workout Page
- * 
+ *
  * `/edit`
  */
 export default function EditWorkoutPage() {
   const router = useRouter();
-  const { myWorkouts, canShare, isLoading } = useAppSelector(
+  const { myWorkouts, canShare, isLoading, savedWorkouts } = useAppSelector(
     (state) => ({
       isLoading: state.workouts.isLoading,
       canShare: state.user.isAuthenticated,
       myWorkouts: state.workouts.list.filter(
         (workout) => workout.creator.id === state.user.id
+      ),
+      savedWorkouts: state.workouts.list.filter(
+        (workout) => workout.creator.id !== state.user.id
       ),
     }),
     isEqual
@@ -58,7 +62,7 @@ export default function EditWorkoutPage() {
   const handleCloneWorkout = (workout: Workout) => {
     dispatch(cloneWorkout(workout, uuid()));
     pushToClone(router, workout.id);
-  }
+  };
 
   useEffect(() => {
     // Update the workoutToEdit if router has a workout id as a query param
@@ -86,8 +90,8 @@ export default function EditWorkoutPage() {
 
   useEffect(() => {
     // Prefetch the clone page just incase
-    router.prefetch('/clone')
-  }, [])
+    router.prefetch("/clone");
+  }, []);
 
   return (
     <Container>
@@ -109,21 +113,42 @@ export default function EditWorkoutPage() {
                   />
                 </Row>
               </>
-            ) : myWorkouts.length > 0 ? (
+            ) : myWorkouts.length > 0 || savedWorkouts.length > 0 ? (
               workoutToEdit === undefined ? (
                 <>
                   <H2>Edit Workout</H2>
                   <P>Select a workout to edit</P>
-                  <WorkoutsContainer>
-                    {myWorkouts.map((workout) => (
-                      <WorkoutPreview
-                        key={workout.id}
-                        workout={workout}
-                        onClick={() => setWorkoutToEdit(workout)}
-                        onClone={() => handleCloneWorkout(workout)}
-                      />
-                    ))}
-                  </WorkoutsContainer>
+
+                  {myWorkouts.length > 0 && (
+                    <>
+                      <P padding="1rem 1rem 0rem 1rem">Created</P>{" "}
+                      <WorkoutsContainer>
+                        {myWorkouts.map((workout) => (
+                          <WorkoutPreview
+                            key={workout.id}
+                            workout={workout}
+                            onClick={() => setWorkoutToEdit(workout)}
+                            onClone={() => handleCloneWorkout(workout)}
+                          />
+                        ))}
+                      </WorkoutsContainer>
+                    </>
+                  )}
+
+                  {savedWorkouts.length > 0 && (
+                    <>
+                      <P padding="1rem 1rem 0rem 1rem">Saved</P>
+                      <WorkoutsContainer>
+                        {savedWorkouts.map((workout) => (
+                          <WorkoutPreview
+                            key={workout.id}
+                            workout={workout}
+                            onClick={() => handleCloneWorkout(workout)}
+                          />
+                        ))}
+                      </WorkoutsContainer>
+                    </>
+                  )}
                 </>
               ) : (
                 <>
@@ -169,6 +194,7 @@ export default function EditWorkoutPage() {
 const Container = styled.div`
   width: 100%;
   max-width: 100%;
+  padding: 1rem;
 `;
 
 const WorkoutsContainer = styled.div`

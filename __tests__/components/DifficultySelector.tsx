@@ -1,6 +1,6 @@
 import { DifficultySelector } from "../../components/DifficultySelector";
 import { Difficulty } from "../../types/Difficulty";
-import { fireEvent, render } from "../test-utils/test-util";
+import { fireEvent, render } from "../test-utils/render";
 
 test("DifficultySelector renders properly", () => {
   let difficulty: Difficulty = "extreme" 

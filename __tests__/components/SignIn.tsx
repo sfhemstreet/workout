@@ -1,6 +1,6 @@
 import { SignIn } from "../../components/SignIn";
 import { INVALID_EMAIL, INVALID_PASSWORD } from "../../components/SignIn/constants";
-import { fireEvent, render } from "../test-utils/test-util";
+import { fireEvent, render } from "../test-utils/render";
 
 test("SignIn inputs render input", () => {
   const signin = render(

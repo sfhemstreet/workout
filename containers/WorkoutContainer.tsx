@@ -3,18 +3,20 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 
-import { firebase } from "../firebase";
+import { firebase } from "../firebase/firebase";
 import { Workout } from "../components/Workout";
 import { pauseExercise, resumeExercise } from "../redux/ducks/activeExercise";
 import {
   changeActiveWorkout,
   nextExercise,
   previousExercise,
+  restartActiveWorkout,
   startActiveWorkout,
   stopActiveWorkout,
 } from "../redux/ducks/activeWorkout";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
-import { fixWorkoutDate } from "../redux/epics/util/fixWorkoutDates";
+import { fixWorkoutDate } from "../redux/epics/util/fixWorkoutDates$";
+import { addWorkout } from "../redux/ducks/workouts";
 
 /**
  * WorkoutContainer
@@ -24,16 +26,18 @@ import { fixWorkoutDate } from "../redux/epics/util/fixWorkoutDates";
  * Adds the workout's name to the page title tag.
  */
 export const WorkoutContainer = () => {
-  const { currentExercise, workout, workouts } = useAppSelector(
+  const { currentExercise, activeWorkout, workouts } = useAppSelector(
     (state) => ({
       currentExercise: state.activeExercise,
-      workout: state.activeWorkout,
+      activeWorkout: state.activeWorkout,
       workouts: state.workouts,
     }),
     isEqual
   );
   const dispatch = useAppDispatch();
   const router = useRouter();
+  const isWorkoutInList =
+    workouts.list.filter((w) => w.id === activeWorkout.id).length > 0;
 
   // Workout Actions
   const handleStartWorkout = () => dispatch(startActiveWorkout());
@@ -41,46 +45,52 @@ export const WorkoutContainer = () => {
   const handleStopWorkout = () => dispatch(stopActiveWorkout());
 
   const handleToggleStartStopWorkout = () =>
-    workout.isStarted ? handleStopWorkout() : handleStartWorkout();
+    activeWorkout.isStarted ? handleStopWorkout() : handleStartWorkout();
+
+  const handleRestartWorkout = () => dispatch(restartActiveWorkout());
+
+  const handleAddWorkoutToList = () => dispatch(addWorkout(activeWorkout));
 
   // Exercise Actions
   const handlePreviousExercise = () =>
-    workout.isStarted && dispatch(previousExercise());
+    activeWorkout.isStarted && dispatch(previousExercise());
 
   const handleNextExercise = () =>
-    workout.isStarted && dispatch(nextExercise());
+    activeWorkout.isStarted && dispatch(nextExercise());
 
   const handlePauseExercise = () =>
-    workout.isStarted && dispatch(pauseExercise());
+    activeWorkout.isStarted && dispatch(pauseExercise());
 
   const handleResumeExercise = () =>
-    workout.isStarted && dispatch(resumeExercise());
+    activeWorkout.isStarted && dispatch(resumeExercise());
 
   const handleTogglePause = () =>
     currentExercise.isPaused ? handleResumeExercise() : handlePauseExercise();
 
   useEffect(() => {
+    if (workouts.isLoading) return;
+
     let workoutId = router.query.id;
 
     if (typeof workoutId === "object") {
       workoutId = workoutId[0];
     }
 
-    if (!workoutId && workout.id) {
-      router.replace({ query: { id: workout.id } });
+    if (!workoutId && activeWorkout.id) {
+      router.replace({ query: { id: activeWorkout.id } });
       return;
-    } 
+    }
 
-    if (!workoutId || workoutId === workout.id) {
-      return;
-    } 
+    if (!workoutId || workoutId === activeWorkout.id) return;
 
-    if (workoutId !== workout.id) {
+    if (workoutId !== activeWorkout.id) {
+      console.log("No Match", workoutId, activeWorkout.id);
+
       const workout = workouts.list.find((w) => w.id === workoutId);
 
       if (workout) {
         dispatch(changeActiveWorkout(workout));
-        console.log("found")
+        console.log("found");
         return;
       }
 
@@ -106,27 +116,28 @@ export const WorkoutContainer = () => {
         }
       })();
     }
-  }, [workout.id]);
+  }, [activeWorkout.id, router.query.id, workouts.isLoading]);
 
   return (
     <>
       <Head>
         <title>
-          Workout{" "}
-          {workout.name === ""
-            ? ""
-            : `- ${workout.name} ${currentExercise.isPaused ? "PAUSED" : ""}`}
+          {activeWorkout.name === ""
+            ? "Workout"
+            : `${currentExercise.isPaused ? "PAUSED - " : ""}${activeWorkout.name}`}
         </title>
       </Head>
       <Workout
         currentExercise={currentExercise}
-        workout={workout}
+        workout={activeWorkout}
         actions={{
+          restartWorkout: handleRestartWorkout,
           togglePause: handleTogglePause,
           toggleStartStop: handleToggleStartStopWorkout,
           previousExercise: handlePreviousExercise,
           nextExercise: handleNextExercise,
-          goToWorkouts: () => router.push("/workouts"),
+          goToWorkouts: () => router.push("/explore"),
+          addWorkoutToList: isWorkoutInList ? undefined : handleAddWorkoutToList,
         }}
       />
     </>

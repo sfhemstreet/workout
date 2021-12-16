@@ -12,10 +12,10 @@ type WorkoutPreviewLoadingShimmersProps = {
  *
  * Displays the given number of loading shimmers, shaped like workout previews.ƒ
  *
- * @param numShimmers default `9`
+ * @param numShimmers default `10`
  */
 export const WorkoutPreviewLoadingShimmers = ({
-  numShimmers = 9,
+  numShimmers = 10,
   transitionStatus,
 }: WorkoutPreviewLoadingShimmersProps) => {
   const array = new Array<number>(numShimmers).fill(1).map((x, i) => x + i);
